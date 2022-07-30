@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "175501093692",
+    "project_id": "flunny-23452",
+    "storage_bucket": "flunny-23452.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175501093692:android:2be801f78ed61c8c460c39",
+        "android_client_info": {
+          "package_name": "com.example.fluny"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "175501093692-apd5vdn5jk1e0oviqcn7co2o6g6ehd9o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fluny",
+            "certificate_hash": "8351cc355610685b74698ee5abe123fcb6848c9b"
+          }
+        },
+        {
+          "client_id": "175501093692-t0k9cbgp54fm4s2tnbvltsphdlsbg6ic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB54MWtPPHXkKxG5h-QSwQdnj1lrLZrkqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "175501093692-t0k9cbgp54fm4s2tnbvltsphdlsbg6ic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
