@@ -12,9 +12,7 @@ class GoogleSignInProvider extends ChangeNotifier {
   Future googleLogin() async {
     final googleUser = await googleSignIn.signIn();
     if (googleUser == null) {
-      return print("nope");
-    } else {
-      print("Zalogowany jestes byku");
+      return;
     }
     _user = googleUser;
     final googleAuth = await googleUser.authentication;

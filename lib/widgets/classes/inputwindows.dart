@@ -27,6 +27,10 @@ class LoginInput extends StatelessWidget {
           controller: myController,
           decoration: InputDecoration(
             prefixIcon: myIcon,
+            iconColor: Colors.red,
+            focusColor: Colors.red,
+            prefixIconColor: Colors.red,
+            suffixIconColor: Colors.red,
             focusedBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 borderSide: BorderSide(color: Colors.white)),

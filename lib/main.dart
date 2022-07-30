@@ -23,18 +23,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-
         theme: ThemeData().copyWith(
-          colorScheme: ThemeData()
-              .colorScheme
-              .copyWith(primary: Colors.white, secondary: Colors.black),
-        ),
+            // colorScheme: ThemeData().colorScheme.copyWith(
+            //     primary: Color.fromARGB(255, 31, 199, 180),
+            //     secondary: Colors.black),
+            ),
         home: MyHomePage(),
         debugShowCheckedModeBanner: false,
       );
 }
 
 class MyHomePage extends StatelessWidget {
+  final TextEditingController nameCont = TextEditingController();
   final TextEditingController mailCont = TextEditingController();
   final TextEditingController passCont = TextEditingController();
 
@@ -45,137 +45,125 @@ class MyHomePage extends StatelessWidget {
     final _isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(200, 84, 84, 84),
+      backgroundColor: const Color.fromARGB(199, 84, 84, 84),
       appBar: AppBar(
-        toolbarHeight: 70.0,
+        centerTitle: true,
         backgroundColor: Colors.white,
-        title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          // Image.asset(
-          //   'images/flunyicon.png',
-          //   height: 60,
-          // ),
-          Text("F L A N K I",
-              style: GoogleFonts.aBeeZee(
-                  textStyle: const TextStyle(
-                      fontSize: 50.0, color: Color.fromARGB(255, 84, 84, 84)))),
-        ]),
+        title: Text("F L A N K I",
+            style: GoogleFonts.aBeeZee(
+                fontSize: 50.0, color: const Color.fromARGB(255, 84, 84, 84))),
       ),
-      body: Stack(
+      body: Column(
+        //shrinkWrap: false,
         children: [
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            if (!_isKeyboard)
-              Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Image.asset(
-                    'images/flunny_2.png',
-                    height: 200,
-                  )),
-          ]),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              LoginInput(
-                myController: mailCont,
-                myHintText: 'E-mail',
-                myIcon: const Icon(Icons.email),
-                myKeyboardType: TextInputType.emailAddress,
+          if (!_isKeyboard)
+            Expanded(
+              flex: 2,
+              child: Image.asset(
+                'images/flunny_2.png',
               ),
-              const SizedBox(height: 15),
-              LoginInput(
-                  myController: passCont,
-                  myHintText: 'Password',
-                  myIcon: const Icon(Icons.key_rounded),
-                  myKeyboardType: TextInputType.visiblePassword),
-              const SizedBox(height: 25),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: const StadiumBorder(),
-                          primary: Colors.white.withOpacity(0.55),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 15)),
-                      onPressed: () {
-                        print("twoj email to ${mailCont.text}");
-                        print("twoje haslo to ${passCont.text}");
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => const GoogleOptions())));
-                      },
-                      child: Text("login",
-                          style: GoogleFonts.overpass(
-                              fontSize: 20, fontWeight: FontWeight.bold))),
-                ],
-              ),
-            ],
+            ),
+          Expanded(
+            flex: 3,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                LoginInput(
+                  myController: nameCont,
+                  myHintText: 'Nazwa Użytkownika',
+                  myIcon: const Icon(Icons.person),
+                  myKeyboardType: TextInputType.name,
+                ),
+                const SizedBox(height: 15),
+                LoginInput(
+                  myController: mailCont,
+                  myHintText: 'E-mail',
+                  myIcon: const Icon(Icons.email),
+                  myKeyboardType: TextInputType.emailAddress,
+                ),
+                const SizedBox(height: 15),
+                LoginInput(
+                    myController: passCont,
+                    myHintText: 'Password',
+                    myIcon: const Icon(Icons.key_rounded),
+                    myKeyboardType: TextInputType.visiblePassword),
+                const SizedBox(height: 25),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.horizontal(
+                                    left: Radius.circular(30))),
+                            foregroundColor:
+                                const Color.fromARGB(199, 84, 84, 84),
+                            backgroundColor:
+                                const Color.fromARGB(255, 120, 239, 255),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 15)),
+                        onPressed: () {
+                          print("twoj email to ${mailCont.text}");
+                          print("twoje haslo to ${passCont.text}");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) =>
+                                      const GoogleOptions())));
+                        },
+                        child: Text("login",
+                            style: GoogleFonts.overpass(
+                                fontSize: 20, fontWeight: FontWeight.bold))),
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.horizontal(
+                                    right: Radius.circular(30))),
+                            foregroundColor:
+                                const Color.fromARGB(199, 84, 84, 84),
+                            backgroundColor: Colors.greenAccent,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 15)),
+                        onPressed: () {
+                          print("twoj email to ${mailCont.text}");
+                          print("twoje haslo to ${passCont.text}");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) =>
+                                      const GoogleOptions())));
+                        },
+                        child: Text("Reg",
+                            style: GoogleFonts.overpass(
+                                fontSize: 20, fontWeight: FontWeight.bold))),
+                  ],
+                ),
+              ],
+            ),
           ),
           if (!_isKeyboard)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    "Sign up with :",
-                    style: GoogleFonts.overpass(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+            Expanded(
+              flex: 1,
+              child: Align(
+                
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      final provider = Provider.of<GoogleSignInProvider>(
+                          context,
+                          listen: false);
+                      provider.googleLogin();
+                    },
+                    icon: const FaIcon(FontAwesomeIcons.google),
+                    label: const Text("Zarejestruj się przez"),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.all(10),
+                      backgroundColor: Colors.redAccent,
+                      shape: const StadiumBorder(),
+                    ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          const SizedBox(height: 10),
-                          Text(
-                            "Google",
-                            style: GoogleFonts.overpass(color: Colors.white),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colors.redAccent),
-                            child: IconButton(
-                              color: Colors.white,
-                              iconSize: 30,
-                              onPressed: () {
-                                final provider =
-                                    Provider.of<GoogleSignInProvider>(context,
-                                        listen: false);
-                                provider.googleLogin();
-                              },
-                              icon: const Icon(FontAwesomeIcons.google),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 10),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          const SizedBox(height: 10),
-                          Text(
-                            "Facebook",
-                            style: GoogleFonts.overpass(color: Colors.white),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colors.blueAccent),
-                            child: IconButton(
-                              color: Colors.white,
-                              iconSize: 30,
-                              onPressed: () {},
-                              icon: const Icon(FontAwesomeIcons.facebook),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                ),
               ),
             ),
         ],

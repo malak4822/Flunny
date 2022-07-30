@@ -40,7 +40,7 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
                       radius: 70,
                       backgroundImage: NetworkImage(user.photoURL!),
                       backgroundColor: Colors.white,
-                      child: imgShadow() ?? const Text("change"),
+                      child: imgShadow(),
                     ),
                   ),
                 ),
@@ -91,6 +91,7 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
                                     color: Colors.white, size: 40),
                               ),
                               Container(
+                           
                                   alignment: Alignment.centerRight,
                                   padding: const EdgeInsets.all(10),
                                   decoration: BoxDecoration(
@@ -160,25 +161,25 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
     );
   }
 
-  Widget imgShadow () {return Container(
-                        width: double.infinity,
-                        height: double.infinity,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.black.withOpacity(0.6)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.photo,
-                              color: Colors.white,
-                              size: 50,
-                            ),
-                            Text("Upload Image",
-                                style: GoogleFonts.overpass(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold))
-                          ],
-                        ),
-                      );}
+  Widget imgShadow() {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+          shape: BoxShape.circle, color: Colors.black.withOpacity(0.6)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.photo,
+            color: Colors.white,
+            size: 50,
+          ),
+          Text("Upload Image",
+              style: GoogleFonts.overpass(
+                  color: Colors.white, fontWeight: FontWeight.bold))
+        ],
+      ),
+    );
+  }
 }
