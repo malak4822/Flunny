@@ -22,21 +22,19 @@ class LoginInput extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: TextField(
+          style: GoogleFonts.overpass(
+              fontWeight: FontWeight.bold, color: Colors.white),
           cursorColor: Colors.white,
           keyboardType: myKeyboardType,
           controller: myController,
           decoration: InputDecoration(
             prefixIcon: myIcon,
-            iconColor: Colors.red,
-            focusColor: Colors.red,
-            prefixIconColor: Colors.red,
-            suffixIconColor: Colors.red,
             focusedBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 borderSide: BorderSide(color: Colors.white)),
             filled: true,
             border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(25))),
+                borderRadius: BorderRadius.all(Radius.circular(15))),
             hintText: myHintText,
             hintStyle: GoogleFonts.overpass(
                 fontWeight: FontWeight.bold, color: Colors.black),

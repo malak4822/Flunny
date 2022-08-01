@@ -16,8 +16,7 @@ void main() async {
 }
 
 bool _isRegisterClicked = false;
-
-bool _loggedWithGoogle = true;
+double _myOpacity = 0.0;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -25,17 +24,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         theme: ThemeData().copyWith(
-            // colorScheme: ThemeData().colorScheme.copyWith(
-            //     primary: Color.fromARGB(255, 31, 199, 180),
-            //     secondary: Colors.black),
-            ),
-        home: MyHomePage(),
+          colorScheme: ThemeData()
+              .colorScheme
+              .copyWith(primary: Colors.white, secondary: Colors.black),
+        ),
+        home: const MyHomePage(),
         debugShowCheckedModeBanner: false,
       );
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -46,10 +45,12 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController mailCont = TextEditingController();
   final TextEditingController passCont = TextEditingController();
 
+  Color _firColor = Colors.black;
+  Color _secColor = const Color.fromARGB(199, 84, 84, 84);
+
   @override
   Widget build(BuildContext context) {
     final _isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
-
     return Scaffold(
       backgroundColor: const Color.fromARGB(199, 84, 84, 84),
       appBar: AppBar(
@@ -60,19 +61,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontSize: 50.0, color: const Color.fromARGB(255, 84, 84, 84))),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (!_isKeyboard)
-            Image.asset(
-              'images/flunny_2.png',
-              width: 150,
-              fit: BoxFit.scaleDown,
+            const Image(
+              image: ResizeImage(AssetImage('images/flunny_2_better.png'),
+                  height: 200),
             ),
           if (_isRegisterClicked)
-            LoginInput(
-              myController: nameCont,
-              myHintText: 'Nazwa Użytkownika',
-              myIcon: const Icon(Icons.person),
-              myKeyboardType: TextInputType.name,
+            AnimatedOpacity(
+              duration: const Duration(seconds: 1),
+              opacity: _myOpacity,
+              child: LoginInput(
+                myController: nameCont,
+                myHintText: 'Nazwa Użytkownika',
+                myIcon: const Icon(Icons.person),
+                myKeyboardType: TextInputType.name,
+              ),
             ),
           if (_isRegisterClicked) const SizedBox(height: 15),
           LoginInput(
@@ -96,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.horizontal(
                               left: Radius.circular(30))),
-                      foregroundColor: const Color.fromARGB(199, 84, 84, 84),
+                      foregroundColor: _firColor,
                       backgroundColor: const Color.fromARGB(255, 120, 239, 255),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30, vertical: 15)),
@@ -106,9 +111,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         _isRegisterClicked = false;
                       }
                     });
-
-                    print("twoj email to ${mailCont.text}");
-                    print("twoje haslo to ${passCont.text}");
+                    _firColor = Colors.black;
+                    _secColor = const Color.fromARGB(199, 84, 84, 84);
+                    // print("twoj email to ${mailCont.text}");
+                    // print("twoje haslo to ${passCont.text}");
                     // Navigator.push(
                     //     context,
                     //     MaterialPageRoute(
@@ -122,21 +128,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.horizontal(
                               right: Radius.circular(30))),
-                      foregroundColor: const Color.fromARGB(199, 84, 84, 84),
+                      foregroundColor: _secColor,
                       backgroundColor: Colors.greenAccent,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30, vertical: 15)),
                   onPressed: () {
                     setState(() {
-                      if (_isRegisterClicked == true) {
-                        _isRegisterClicked = false;
-                      } else {
+                      if (_isRegisterClicked == false) {
                         _isRegisterClicked = true;
                       }
+                      _myOpacity = _myOpacity == 0 ? 1.0 : 0;
                     });
+                    _firColor = const Color.fromARGB(199, 84, 84, 84);
+                    _secColor = Colors.black;
 
-                    print("twoj email to ${mailCont.text}");
-                    print("twoje haslo to ${passCont.text}");
                     // Navigator.push(
                     //     context,
                     //     MaterialPageRoute(
@@ -147,26 +152,30 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontSize: 20, fontWeight: FontWeight.bold))),
             ],
           ),
-          Directionality(
-            textDirection: TextDirection.rtl,
-            child: ElevatedButton.icon(
-              onPressed: () {
-                final provider =
-                    Provider.of<GoogleSignInProvider>(context, listen: false);
-                provider.googleLogin();
-              },
-              icon: const FaIcon(FontAwesomeIcons.google),
-              label: const Text("Zarejestruj się przez"),
-              style: ElevatedButton.styleFrom(
-                
-                backgroundColor: Colors.redAccent,
-                shape: const RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(50))),
+          Column(
+            children: [
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    final provider = Provider.of<GoogleSignInProvider>(context,
+                        listen: false);
+                    provider.googleLogin();
+                  },
+                  icon: const FaIcon(FontAwesomeIcons.google),
+                  label: const Text("Zarejestruj się przez"),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.fromLTRB(15, 0, 20, 0),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    backgroundColor: Colors.black45,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(bottom: Radius.circular(50))),
+                  ),
+                ),
               ),
-            ),
-          ),
-
+            ],
+          )
         ],
       ),
     );
