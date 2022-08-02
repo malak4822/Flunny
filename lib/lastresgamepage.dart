@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:screenshot/screenshot.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
 class EndScreen extends StatefulWidget {
@@ -26,7 +25,7 @@ class _EndScreen extends State<EndScreen> {
     _scrollController;
   }
 
-  final kontroler = ScreenshotController();
+
 
   final StopWatchTimer _stopWatchTimer = StopWatchTimer();
   @override

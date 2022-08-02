@@ -6,6 +6,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+/////////// ZMIENNE OGÓLNE ///////////////
+Color _firColor = Colors.black;
+Color _secColor = const Color.fromARGB(199, 84, 84, 84);
+bool _isRegisterClicked = false;
+double _myOpacity = 1;
+bool isTextObscured = true;
+////////// KONIEC ZMIENNYCH OGÓLNYCH /////
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -14,9 +22,6 @@ void main() async {
     child: const MyApp(),
   ));
 }
-
-bool _isRegisterClicked = false;
-double _myOpacity = 0.0;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -34,8 +39,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
+  const MyHomePage({Key? key, isTextObscured}) : super(key: key);
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -44,9 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController nameCont = TextEditingController();
   final TextEditingController mailCont = TextEditingController();
   final TextEditingController passCont = TextEditingController();
-
-  Color _firColor = Colors.black;
-  Color _secColor = const Color.fromARGB(199, 84, 84, 84);
 
   @override
   Widget build(BuildContext context) {
@@ -68,29 +69,38 @@ class _MyHomePageState extends State<MyHomePage> {
               image: ResizeImage(AssetImage('images/flunny_2_better.png'),
                   height: 200),
             ),
+          const SizedBox(height: 30),
           if (_isRegisterClicked)
             AnimatedOpacity(
               duration: const Duration(seconds: 1),
               opacity: _myOpacity,
               child: LoginInput(
                 myController: nameCont,
-                myHintText: 'Nazwa Użytkownika',
-                myIcon: const Icon(Icons.person),
+                myHintText: 'Użytkownik',
+                myPrefixIcon: const Icon(Icons.person),
                 myKeyboardType: TextInputType.name,
               ),
             ),
           if (_isRegisterClicked) const SizedBox(height: 15),
           LoginInput(
             myController: mailCont,
-            myHintText: 'E-mail',
-            myIcon: const Icon(Icons.email),
+            myHintText: 'Email',
+            myPrefixIcon: const Icon(Icons.email),
             myKeyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 15),
           LoginInput(
+              isTextObscured: isTextObscured,
+              mySuffIcon: IconButton(
+                  icon: const Icon(Icons.security),
+                  onPressed: () {
+                    setState(() {
+                      isTextObscured = !isTextObscured;
+                    });
+                  }),
               myController: passCont,
-              myHintText: 'Password',
-              myIcon: const Icon(Icons.key_rounded),
+              myHintText: 'Hasło',
+              myPrefixIcon: const Icon(Icons.key_rounded),
               myKeyboardType: TextInputType.visiblePassword),
           const SizedBox(height: 15),
           Row(

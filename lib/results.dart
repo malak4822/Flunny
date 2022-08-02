@@ -3,10 +3,7 @@ import 'package:flany/game2.dart';
 import 'package:flany/zmienne.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:screenshot/screenshot.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'lastresgamepage.dart';
 
@@ -30,8 +27,6 @@ class _ResGamePageState extends State<ResGamePage> {
     _scrollController;
   }
 
-  final kontroler = ScreenshotController();
-
   final StopWatchTimer _stopWatchTimer = StopWatchTimer();
   @override
   Widget build(BuildContext context) {
@@ -46,9 +41,7 @@ class _ResGamePageState extends State<ResGamePage> {
         providers: [
           ChangeNotifierProvider.value(value: ZmienneClass()),
         ],
-        child: Screenshot(
-            controller: kontroler,
-            child: Scaffold(
+        child:Scaffold(
                 body: Container(
                     decoration: const BoxDecoration(
                         gradient: LinearGradient(colors: [
@@ -250,25 +243,12 @@ class _ResGamePageState extends State<ResGamePage> {
                               child: IconButton(
                                   iconSize: 90,
                                   onPressed: () async {
-                                    final ss = await kontroler.capture();
-                                    if (ss == null) return;
-                                    await saveImage(ss);
+                                
                                   },
                                   icon: const Icon(Icons.screenshot,
                                       color: Colors.white))))
-                    ])))));
+                    ]))));
   }
 
-  Future<String> saveImage(Uint8List bytes) async {
-    await [Permission.storage].request();
 
-    final time = DateTime.now()
-        .toIso8601String()
-        .replaceAll(".", "-")
-        .replaceAll(":", "-");
-    final name = 'screenshot_$time';
-    final result = await ImageGallerySaver.saveImage(bytes, name: name);
-
-    return result["/Pictures"];
-  }
 }
