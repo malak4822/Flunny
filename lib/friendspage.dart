@@ -48,11 +48,11 @@ class _FriendsPageState extends State<FriendsPage> {
             child: const Icon(
               Icons.settings,
               size: 40,
-              color: Colors.blue,
+          
             ),
-            backgroundColor: Colors.white),
+          ),
       ),
-      backgroundColor: Colors.blue,
+ 
       body: ListView(
         children: [
           Padding(
@@ -62,7 +62,7 @@ class _FriendsPageState extends State<FriendsPage> {
               children: [
                 CircleAvatar(
                   radius: 72,
-                  backgroundColor: Colors.white,
+        
                   child: CircleAvatar(
                     radius: 70,
                     backgroundImage: NetworkImage(user.photoURL!),
@@ -78,14 +78,14 @@ class _FriendsPageState extends State<FriendsPage> {
                         maxLines: 2,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.overpass(
-                            color: Colors.black,
+          
                             fontSize: 35,
                             fontWeight: FontWeight.w900),
                       ),
                       Text(user.email!,
                           maxLines: 4,
                           style: GoogleFonts.overpass(
-                              color: Colors.white,
+                 
                               fontSize: 17,
                               fontWeight: FontWeight.w200))
                     ],

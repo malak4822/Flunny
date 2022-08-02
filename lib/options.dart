@@ -19,7 +19,7 @@ class GoogleOptions extends StatelessWidget {
             } else if (snapshot.hasError) {
               return const Center(child: Text("Something is Wrong.."));
             } else {
-              return MyHomePage();
+              return const MyHomePage();
             }
           }),
     );

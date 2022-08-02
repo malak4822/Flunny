@@ -1,4 +1,5 @@
 // ignore_for_file: must_be_immutable
+import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,7 +18,7 @@ class LoginInput extends StatelessWidget {
   String myHintText;
   Icon myPrefixIcon;
   TextInputType myKeyboardType;
-  IconButton? mySuffIcon;
+  AnimatedIconButton? mySuffIcon;
   bool isTextObscured;
 
 //////////////////////////////////
@@ -29,23 +30,22 @@ class LoginInput extends StatelessWidget {
         child: TextField(
           obscureText: isTextObscured,
           textInputAction: TextInputAction.next,
-          style: GoogleFonts.overpass(
-              fontWeight: FontWeight.bold, color: Colors.white),
-          cursorColor: Colors.white,
+          style: GoogleFonts.overpass(fontWeight: FontWeight.bold),
+    
           keyboardType: myKeyboardType,
           controller: myController,
           decoration: InputDecoration(
             suffixIcon: mySuffIcon,
             prefixIcon: myPrefixIcon,
             focusedBorder: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(30)),
-                borderSide: BorderSide(color: Colors.white)),
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+            ),
             filled: true,
             border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(15))),
             hintText: myHintText,
             hintStyle: GoogleFonts.overpass(
-                fontWeight: FontWeight.bold, color: Colors.black),
+                fontWeight: FontWeight.bold),
           ),
         ));
   }

@@ -1,4 +1,6 @@
+import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:flany/googlesignin.dart';
+import 'package:flany/options.dart';
 import 'package:flany/widgets/classes/inputwindows.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,10 +9,8 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 /////////// ZMIENNE OGÓLNE ///////////////
-Color _firColor = Colors.black;
-Color _secColor = const Color.fromARGB(199, 84, 84, 84);
-bool _isRegisterClicked = false;
-double _myOpacity = 1;
+bool _isLoginClicked = true;
+double _myOpacity = 0;
 bool isTextObscured = true;
 ////////// KONIEC ZMIENNYCH OGÓLNYCH /////
 
@@ -28,18 +28,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        theme: ThemeData().copyWith(
-          colorScheme: ThemeData()
-              .colorScheme
-              .copyWith(primary: Colors.white, secondary: Colors.black),
-        ),
+        theme: ThemeData(),
         home: const MyHomePage(),
         debugShowCheckedModeBanner: false,
       );
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, isTextObscured}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -53,13 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final _isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
-      backgroundColor: const Color.fromARGB(199, 84, 84, 84),
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.white,
-        title: Text("F L A N K I",
-            style: GoogleFonts.aBeeZee(
-                fontSize: 50.0, color: const Color.fromARGB(255, 84, 84, 84))),
+        title: Text("F L A N K I", style: GoogleFonts.aBeeZee(fontSize: 50.0)),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -69,19 +61,17 @@ class _MyHomePageState extends State<MyHomePage> {
               image: ResizeImage(AssetImage('images/flunny_2_better.png'),
                   height: 200),
             ),
-          const SizedBox(height: 30),
-          if (_isRegisterClicked)
-            AnimatedOpacity(
-              duration: const Duration(seconds: 1),
-              opacity: _myOpacity,
-              child: LoginInput(
-                myController: nameCont,
-                myHintText: 'Użytkownik',
-                myPrefixIcon: const Icon(Icons.person),
-                myKeyboardType: TextInputType.name,
-              ),
+          AnimatedOpacity(
+            duration: const Duration(milliseconds: 400),
+            opacity: _myOpacity,
+            child: LoginInput(
+              myController: nameCont,
+              myHintText: 'Użytkownik',
+              myPrefixIcon: const Icon(Icons.person),
+              myKeyboardType: TextInputType.name,
             ),
-          if (_isRegisterClicked) const SizedBox(height: 15),
+          ),
+          const SizedBox(height: 15),
           LoginInput(
             myController: mailCont,
             myHintText: 'Email',
@@ -91,13 +81,23 @@ class _MyHomePageState extends State<MyHomePage> {
           const SizedBox(height: 15),
           LoginInput(
               isTextObscured: isTextObscured,
-              mySuffIcon: IconButton(
-                  icon: const Icon(Icons.security),
-                  onPressed: () {
+              mySuffIcon: AnimatedIconButton(
+                size: 24,
+                animationDirection: const AnimationDirection.bounce(),
+                onPressed: () async {
+                  await Future.delayed(const Duration(milliseconds: 400), () {
                     setState(() {
                       isTextObscured = !isTextObscured;
                     });
-                  }),
+                  });
+                },
+                duration: const Duration(milliseconds: 400),
+                splashColor: Colors.transparent,
+                icons: const <AnimatedIconItem>[
+                  AnimatedIconItem(icon: Icon(Icons.remove_red_eye_outlined)),
+                  AnimatedIconItem(icon: Icon(Icons.remove_red_eye)),
+                ],
+              ),
               myController: passCont,
               myHintText: 'Hasło',
               myPrefixIcon: const Icon(Icons.key_rounded),
@@ -111,18 +111,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.horizontal(
                               left: Radius.circular(30))),
-                      foregroundColor: _firColor,
-                      backgroundColor: const Color.fromARGB(255, 120, 239, 255),
+                      //KOLOR NAPISU W LOGINIE              KOLOR NAPISU W LOGINIE              KOLOR NAPISU W LOGINIE
+                      //    foregroundColor: ,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30, vertical: 15)),
                   onPressed: () {
                     setState(() {
-                      if (_isRegisterClicked == true) {
-                        _isRegisterClicked = false;
+                      if (_isLoginClicked == false) {
+                        _isLoginClicked = true;
+                        _myOpacity = 0;
                       }
                     });
-                    _firColor = Colors.black;
-                    _secColor = const Color.fromARGB(199, 84, 84, 84);
+
                     // print("twoj email to ${mailCont.text}");
                     // print("twoje haslo to ${passCont.text}");
                     // Navigator.push(
@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     //     MaterialPageRoute(
                     //         builder: ((context) => const GoogleOptions())));
                   },
-                  child: Text("login",
+                  child: Text("Zaloguj",
                       style: GoogleFonts.overpass(
                           fontSize: 20, fontWeight: FontWeight.bold))),
               ElevatedButton(
@@ -138,26 +138,24 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.horizontal(
                               right: Radius.circular(30))),
-                      foregroundColor: _secColor,
-                      backgroundColor: Colors.greenAccent,
+                      //KOLOR NAPISU W REJESTRACJI        KOLOR NAPISU W REJESTRACJI        KOLOR NAPISU W REJESTRACJI
+                      //    foregroundColor: ,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30, vertical: 15)),
                   onPressed: () {
                     setState(() {
-                      if (_isRegisterClicked == false) {
-                        _isRegisterClicked = true;
+                      if (_isLoginClicked == true) {
+                        _isLoginClicked = false;
+                        _myOpacity = 1;
                       }
-                      _myOpacity = _myOpacity == 0 ? 1.0 : 0;
                     });
-                    _firColor = const Color.fromARGB(199, 84, 84, 84);
-                    _secColor = Colors.black;
 
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: ((context) => const GoogleOptions())));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const GoogleOptions())));
                   },
-                  child: Text("Register",
+                  child: Text("Zarejestruj",
                       style: GoogleFonts.overpass(
                           fontSize: 20, fontWeight: FontWeight.bold))),
             ],
@@ -175,9 +173,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   icon: const FaIcon(FontAwesomeIcons.google),
                   label: const Text("Zarejestruj się przez"),
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.fromLTRB(15, 0, 20, 0),
+                    padding: const EdgeInsets.fromLTRB(30, 10, 35, 10),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    backgroundColor: Colors.black45,
                     shape: const RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.vertical(bottom: Radius.circular(50))),
