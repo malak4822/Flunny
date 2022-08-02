@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ZmienneClass extends ChangeNotifier {
+
+
   var graczepoczatkowi = 0;
   int? _gracze;
   int? _runda;
@@ -56,6 +58,11 @@ class ZmienneClass extends ChangeNotifier {
     return suma1;
   }
 
+    void savinCzas() {
+    svdsumaczasu1 = sumaczasu1;
+    svdsumaczasu2 = sumaczasu2;
+  }
+
   void dodajczas2(czas2) {
     czasy2.add(czas2);
   }
@@ -98,10 +105,7 @@ class ZmienneClass extends ChangeNotifier {
     resetliczb();
   }
 
-  void savinCzas() {
-    svdsumaczasu1 = sumaczasu1;
-    svdsumaczasu2 = sumaczasu2;
-  }
+
 
   void resetliczb() {
     msdcntr1 = 0;

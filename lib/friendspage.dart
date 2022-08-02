@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flany/friendspageeditable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class FriendsPage extends StatefulWidget {
   const FriendsPage({Key? key}) : super(key: key);
@@ -30,29 +31,27 @@ class _FriendsPageState extends State<FriendsPage> {
         duration: const Duration(milliseconds: 500),
         turns: _turns,
         child: FloatingActionButton(
-            onPressed: () async {
-              if (!buttonClicked) {
-                buttonClicked = true;
-              } else {
-                return;
-              }
-              animacja();
-              await Future.delayed(const Duration(milliseconds: 500), () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const FriendsPageEditable()));
-              });
-              buttonClicked = !buttonClicked;
-            },
-            child: const Icon(
-              Icons.settings,
-              size: 40,
-          
-            ),
+          onPressed: () async {
+            if (!buttonClicked) {
+              buttonClicked = true;
+            } else {
+              return;
+            }
+            animacja();
+            await Future.delayed(const Duration(milliseconds: 500), () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const FriendsPageEditable()));
+            });
+            buttonClicked = !buttonClicked;
+          },
+          child: const Icon(
+            Icons.settings,
+            size: 40,
           ),
+        ),
       ),
- 
       body: ListView(
         children: [
           Padding(
@@ -62,7 +61,6 @@ class _FriendsPageState extends State<FriendsPage> {
               children: [
                 CircleAvatar(
                   radius: 72,
-        
                   child: CircleAvatar(
                     radius: 70,
                     backgroundImage: NetworkImage(user.photoURL!),
@@ -78,16 +76,12 @@ class _FriendsPageState extends State<FriendsPage> {
                         maxLines: 2,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.overpass(
-          
-                            fontSize: 35,
-                            fontWeight: FontWeight.w900),
+                            fontSize: 35, fontWeight: FontWeight.w900),
                       ),
                       Text(user.email!,
                           maxLines: 4,
                           style: GoogleFonts.overpass(
-                 
-                              fontSize: 17,
-                              fontWeight: FontWeight.w200))
+                              fontSize: 17, fontWeight: FontWeight.w200))
                     ],
                   ),
                 ),

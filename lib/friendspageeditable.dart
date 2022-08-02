@@ -1,6 +1,9 @@
+import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flany/providers/googlesignin.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class FriendsPageEditable extends StatefulWidget {
   const FriendsPageEditable({Key? key}) : super(key: key);
@@ -100,6 +103,36 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
                 ),
               ],
             ),
+          ),
+          AnimatedIconButton(
+            size: 44,
+            animationDirection: const AnimationDirection.bounce(),
+            onPressed: () {
+              setState(() {
+                //  Provider.of<ZmienneClass>(context, listen: false)
+                //      .dodajczas1(_currenttime1);
+
+                bool ees =
+                    Provider.of<GoogleSignInProvider>(context, listen: false)
+                        .darkModeOn;
+                ees = !ees;
+                print("click");
+              });
+            },
+            duration: const Duration(milliseconds: 400),
+            splashColor: Colors.transparent,
+            icons: const <AnimatedIconItem>[
+              AnimatedIconItem(
+                  icon: Icon(
+                Icons.wb_sunny_rounded,
+                color: Colors.yellow,
+              )),
+              AnimatedIconItem(
+                  icon: Icon(
+                Icons.nights_stay_rounded,
+                color: Colors.black,
+              )),
+            ],
           ),
         ],
       ),

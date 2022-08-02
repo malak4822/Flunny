@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 import 'package:flany/game2.dart';
-import 'package:flany/zmienne.dart';
+import 'package:flany/providers/zmienne.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';

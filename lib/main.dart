@@ -1,6 +1,7 @@
 import 'package:animated_icon_button/animated_icon_button.dart';
-import 'package:flany/googlesignin.dart';
+import 'package:flany/providers/googlesignin.dart';
 import 'package:flany/options.dart';
+import 'package:flany/providers/zmienne.dart';
 import 'package:flany/widgets/classes/inputwindows.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -18,7 +19,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MultiProvider(
-    providers: [ChangeNotifierProvider(create: (_) => GoogleSignInProvider())],
+    providers: [
+      ChangeNotifierProvider(create: (_) => GoogleSignInProvider()),
+    ],
     child: const MyApp(),
   ));
 }
@@ -28,7 +31,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        theme: ThemeData(),
+        theme: Provider.of<GoogleSignInProvider>(context).darkModeOn
+            ? ThemeData.light()
+            : ThemeData.dark(),
         home: const MyHomePage(),
         debugShowCheckedModeBanner: false,
       );

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flany/game1.dart';
 import 'package:flany/main.dart';
-import 'package:flany/zmienne.dart';
+import 'package:flany/providers/zmienne.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

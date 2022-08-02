@@ -2,7 +2,7 @@ import 'package:flany/game2.dart';
 import 'package:flany/res1.dart';
 import 'package:flany/results.dart';
 import 'package:flutter/material.dart';
-import 'package:flany/zmienne.dart';
+import 'package:flany/providers/zmienne.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
