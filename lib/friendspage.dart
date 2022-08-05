@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flany/friendspageeditable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class FriendsPage extends StatefulWidget {
   const FriendsPage({Key? key}) : super(key: key);
@@ -31,6 +30,7 @@ class _FriendsPageState extends State<FriendsPage> {
         duration: const Duration(milliseconds: 500),
         turns: _turns,
         child: FloatingActionButton(
+          shape: const CircleBorder(),
           onPressed: () async {
             if (!buttonClicked) {
               buttonClicked = true;

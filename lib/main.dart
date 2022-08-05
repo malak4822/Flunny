@@ -1,8 +1,8 @@
 import 'package:animated_icon_button/animated_icon_button.dart';
-import 'package:flany/providers/googlesignin.dart';
 import 'package:flany/options.dart';
-import 'package:flany/providers/zmienne.dart';
+import 'package:flany/providers/googlesignin.dart';
 import 'package:flany/widgets/classes/inputwindows.dart';
+import 'package:flany/widgets/classes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +21,7 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => GoogleSignInProvider()),
+      ChangeNotifierProvider(create: (_) => ThemesProvider()),
     ],
     child: const MyApp(),
   ));
@@ -28,12 +29,15 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+//This theme should have a [ThemeData.brightness] set to [Brightness.dark].
+//Uses [theme] instead when null. Defaults to the value of [ThemeData.light()]
+//when both [darkTheme] and [theme] are null.
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        theme: Provider.of<GoogleSignInProvider>(context).darkModeOn
-            ? ThemeData.light()
-            : ThemeData.dark(),
+        theme: Provider.of<ThemesProvider>(context).darkModeOn
+            ? ThemeOptions.white
+            : ThemeOptions.black,
         home: const MyHomePage(),
         debugShowCheckedModeBanner: false,
       );

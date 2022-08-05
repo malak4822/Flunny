@@ -1,6 +1,6 @@
 import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flany/providers/googlesignin.dart';
+import 'package:flany/widgets/classes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -109,14 +109,7 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
             animationDirection: const AnimationDirection.bounce(),
             onPressed: () {
               setState(() {
-                //  Provider.of<ZmienneClass>(context, listen: false)
-                //      .dodajczas1(_currenttime1);
-
-                bool ees =
-                    Provider.of<GoogleSignInProvider>(context, listen: false)
-                        .darkModeOn;
-                ees = !ees;
-                print("click");
+                Provider.of<ThemesProvider>(context, listen: false).darkModeChanger();
               });
             },
             duration: const Duration(milliseconds: 400),

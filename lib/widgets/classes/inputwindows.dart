@@ -31,7 +31,6 @@ class LoginInput extends StatelessWidget {
           obscureText: isTextObscured,
           textInputAction: TextInputAction.next,
           style: GoogleFonts.overpass(fontWeight: FontWeight.bold),
-    
           keyboardType: myKeyboardType,
           controller: myController,
           decoration: InputDecoration(
@@ -42,10 +41,9 @@ class LoginInput extends StatelessWidget {
             ),
             filled: true,
             border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(15))),
+                borderRadius: BorderRadius.all(Radius.circular(20))),
             hintText: myHintText,
-            hintStyle: GoogleFonts.overpass(
-                fontWeight: FontWeight.bold),
+            hintStyle: GoogleFonts.overpass(fontWeight: FontWeight.bold),
           ),
         ));
   }
