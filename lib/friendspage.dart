@@ -61,6 +61,7 @@ class _FriendsPageState extends State<FriendsPage> {
               children: [
                 CircleAvatar(
                   radius: 72,
+                 
                   child: CircleAvatar(
                     radius: 70,
                     backgroundImage: NetworkImage(user.photoURL!),
