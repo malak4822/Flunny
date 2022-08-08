@@ -1,5 +1,6 @@
 import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flany/providers/googlesignin.dart';
 import 'package:flany/providers/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,7 +24,6 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
           Padding(
             padding: const EdgeInsets.all(20),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 GestureDetector(
                   onTap: () {
@@ -35,7 +35,6 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
                         builder: ((builder) => bottomLine()));
                   },
                   child: CircleAvatar(
-               
                     radius: 72,
                     child: CircleAvatar(
                       radius: 70,
@@ -48,69 +47,64 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
                 Expanded(
                   child: Column(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          //
-                        },
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.6),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Text(
-                                user.displayName!,
-                                textAlign: TextAlign.center,
-                                maxLines: 2,
-                                style: GoogleFonts.overpass(
-                                    fontSize: 35, fontWeight: FontWeight.w900),
-                              ),
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(30),
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.6),
+                              borderRadius: BorderRadius.circular(30),
                             ),
-                            const Center(
+                            child: const Center(
                               child: Icon(Icons.border_color, size: 35),
                             ),
-                          ],
-                        ),
+                          ),
+                          Text(user.displayName!,
+                              maxLines: 2,
+                              style: GoogleFonts.overpass(
+                                  fontSize: 35,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white.withOpacity(0.3))),
+                        ],
                       ),
                       const SizedBox(height: 5),
-                      GestureDetector(
-                          onTap: () {
-                            //
-                          },
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              const Center(
-                                child: Icon(Icons.border_color, size: 40),
+                      Stack(
+                        children: [
+                          Container(
+                              alignment: Alignment.centerRight,
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.6),
+                                borderRadius: BorderRadius.circular(30),
                               ),
-                              Container(
-                                  alignment: Alignment.centerRight,
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.6),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Text(user.email!,
-                                      maxLines: 2,
-                                      style: GoogleFonts.overpass(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w200)))
-                            ],
-                          ))
+                              child: Text(user.email!,
+                                  maxLines: 2,
+                                  style: GoogleFonts.overpass(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w200,
+                                      color: Colors.white.withOpacity(0.3)))),
+                          const Center(
+                            child: Icon(Icons.border_color, size: 35),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),
               ],
             ),
           ),
+          ElevatedButton(onPressed: (){
+            Provider.of<GoogleSignInProvider>(context, listen: false).logout();
+          }, child: Text("log out")),
           AnimatedIconButton(
             size: 44,
             animationDirection: const AnimationDirection.bounce(),
             onPressed: () {
               setState(() {
-                Provider.of<ThemesProvider>(context, listen: false).darkModeChanger();
+                Provider.of<ThemesProvider>(context, listen: false) 
+                    .darkModeChanger();
               });
             },
             duration: const Duration(milliseconds: 400),

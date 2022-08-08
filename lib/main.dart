@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 /////////// ZMIENNE OGÓLNE ///////////////
 bool _isLoginClicked = true;
@@ -58,10 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final _isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("F L A N K I", style: GoogleFonts.aBeeZee(fontSize: 50.0)),
-      ),
+      
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -131,9 +129,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.horizontal(
                               left: Radius.circular(30))),
-                      foregroundColor: (_isLoginClicked)
-                          ? Colors.black
-                          : const Color.fromARGB(255, 173, 173, 173),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30, vertical: 15)),
                   onPressed: () {
@@ -141,25 +136,33 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (_isLoginClicked == false) {
                         _isLoginClicked = true;
                       } else {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: ((context) =>
-                        //             const GoogleOptions())));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) =>
+                                    const GoogleOptions())));
                       }
                     });
                   },
-                  child: Text("Zaloguj",
-                      style: GoogleFonts.overpass(
-                          fontSize: 20, fontWeight: FontWeight.bold))),
+                  child: _isLoginClicked
+                      ? GradientText(
+                          'Zaloguj',
+                          style: const TextStyle(fontSize: 21),
+                          colors: const [
+                            Color.fromARGB(255, 120, 239, 255),
+                            Color.fromARGB(255, 98, 255, 156)
+                          ],
+                        )
+                      : Text(
+                          "Zaloguj",
+                          style: GoogleFonts.overpass(
+                              fontSize: 20),
+                        )),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.horizontal(
                               right: Radius.circular(30))),
-                      foregroundColor: (_isLoginClicked)
-                          ? const Color.fromARGB(255, 173, 173, 173)
-                          : Colors.black,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30, vertical: 15)),
                   onPressed: () {
@@ -168,17 +171,27 @@ class _MyHomePageState extends State<MyHomePage> {
                         _isLoginClicked = false;
                         _myOpacity = 1;
                       } else {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: ((context) =>
-                        //             const GoogleOptions())));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) =>
+                                    const GoogleOptions())));
                       }
                     });
                   },
-                  child: Text("Zarejestruj",
-                      style: GoogleFonts.overpass(
-                          fontSize: 20, fontWeight: FontWeight.bold))),
+                  child: _isLoginClicked
+                      ? Text(
+                          "Zarejestruj",
+                          style: GoogleFonts.overpass(fontSize: 20),
+                        )
+                      : GradientText(
+                          'Zarejestruj',
+                          style: const TextStyle(fontSize: 21),
+                          colors: const [
+                            Color.fromARGB(255, 120, 239, 255),
+                            Color.fromARGB(255, 98, 255, 156)
+                          ],
+                        )),
             ],
           ),
           Column(

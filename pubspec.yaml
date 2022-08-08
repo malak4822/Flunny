@@ -46,6 +46,7 @@ dependencies:
   provider: ^6.0.3
   cloud_firestore: ^3.4.1
   animated_icon_button: ^1.0.2
+  simple_gradient_text: ^1.2.3
 
 flutter_icons:
   android: "launcher_icon"
