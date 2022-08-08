@@ -63,165 +63,151 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("F L A N K I", style: GoogleFonts.aBeeZee(fontSize: 50.0)),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // if (!_isKeyboard)
-          const SizedBox(height: 20),
-          const Expanded(
-            child: Image(
+          AnimatedContainer(
+            curve: Curves.linearToEaseOut,
+            duration: const Duration(milliseconds: 300),
+            height: _isKeyboard ? 0 : 150,
+            child: const Image(
+              height: 150,
+              fit: BoxFit.scaleDown,
               image: AssetImage('images/flunny_2_better.png'),
             ),
           ),
-
-          Expanded(
-            flex: 4,
-            child: Column(
-              children: [
-                Column(
-                  children: [
-                    if (!_isLoginClicked) const SizedBox(height: 15),
-                    AnimatedContainer(
-                      curve: Curves.linearToEaseOut,
-                      duration: const Duration(milliseconds: 400),
-                      width: _isLoginClicked
-                          ? 0
-                          : MediaQuery.of(context).size.width,
-                      height: _isLoginClicked ? 0 : 60,
-                      child: Visibility(
-                        visible: !_isLoginClicked,
-                        child: LoginInput(
-                          myController: nameCont,
-                          myHintText: 'Użytkownik',
-                          myPrefixIcon: const Icon(Icons.person),
-                          myKeyboardType: TextInputType.name,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    LoginInput(
-                      myController: mailCont,
-                      myHintText: 'Email',
-                      myPrefixIcon: const Icon(Icons.email),
-                      myKeyboardType: TextInputType.emailAddress,
-                    ),
-                    const SizedBox(height: 15),
-                    LoginInput(
-                        isTextObscured: isTextObscured,
-                        mySuffIcon: AnimatedIconButton(
-                          size: 24,
-                          animationDirection: const AnimationDirection.bounce(),
-                          onPressed: () async {
-                            await Future.delayed(
-                                const Duration(milliseconds: 400), () {
-                              setState(() {
-                                isTextObscured = !isTextObscured;
-                              });
-                            });
-                          },
-                          duration: const Duration(milliseconds: 400),
-                          splashColor: Colors.transparent,
-                          icons: const <AnimatedIconItem>[
-                            AnimatedIconItem(
-                                icon: Icon(Icons.remove_red_eye_outlined)),
-                            AnimatedIconItem(icon: Icon(Icons.remove_red_eye)),
-                          ],
-                        ),
-                        myController: passCont,
-                        myHintText: 'Hasło',
-                        myPrefixIcon: const Icon(Icons.key_rounded),
-                        myKeyboardType: TextInputType.visiblePassword),
-                  ],
-                ),
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.horizontal(
-                                    left: Radius.circular(30))),
-                            foregroundColor: (_isLoginClicked)
-                                ? Colors.black
-                                : const Color.fromARGB(255, 173, 173, 173),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 15)),
-                        onPressed: () {
-                          setState(() {
-                            if (_isLoginClicked == false) {
-                              _isLoginClicked = true;
-                            } else {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: ((context) =>
-                              //             const GoogleOptions())));
-                            }
-                          });
-                        },
-                        child: Text("Zaloguj",
-                            style: GoogleFonts.overpass(
-                                fontSize: 20, fontWeight: FontWeight.bold))),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.horizontal(
-                                    right: Radius.circular(30))),
-                            foregroundColor: (_isLoginClicked)
-                                ? const Color.fromARGB(255, 173, 173, 173)
-                                : Colors.black,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 15)),
-                        onPressed: () {
-                          setState(() {
-                            if (_isLoginClicked) {
-                              _isLoginClicked = false;
-                              _myOpacity = 1;
-                            } else {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: ((context) =>
-                              //             const GoogleOptions())));
-                            }
-                          });
-                        },
-                        child: Text("Zarejestruj",
-                            style: GoogleFonts.overpass(
-                                fontSize: 20, fontWeight: FontWeight.bold))),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: ElevatedButton.icon(
-                        onPressed: () {
-                          final provider = Provider.of<GoogleSignInProvider>(
-                              context,
-                              listen: false);
-                          provider.googleLogin();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) =>
-                                      const GoogleOptions())));
-                        },
-                        icon: const FaIcon(FontAwesomeIcons.google),
-                        label: const Text("Zarejestruj się przez"),
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.fromLTRB(30, 10, 35, 10),
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                  bottom: Radius.circular(50))),
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
+          if (!_isLoginClicked) const SizedBox(height: 15),
+          AnimatedContainer(
+            curve: Curves.linearToEaseOut,
+            duration: const Duration(milliseconds: 400),
+            width: _isLoginClicked ? 0 : MediaQuery.of(context).size.width,
+            height: _isLoginClicked ? 0 : 60,
+            child: Visibility(
+              visible: !_isLoginClicked,
+              child: LoginInput(
+                myController: nameCont,
+                myHintText: 'Użytkownik',
+                myPrefixIcon: const Icon(Icons.person),
+                myKeyboardType: TextInputType.name,
+              ),
             ),
           ),
+          const SizedBox(height: 15),
+          LoginInput(
+            myController: mailCont,
+            myHintText: 'Email',
+            myPrefixIcon: const Icon(Icons.email),
+            myKeyboardType: TextInputType.emailAddress,
+          ),
+          const SizedBox(height: 15),
+          LoginInput(
+              isTextObscured: isTextObscured,
+              mySuffIcon: AnimatedIconButton(
+                size: 24,
+                animationDirection: const AnimationDirection.bounce(),
+                onPressed: () async {
+                  await Future.delayed(const Duration(milliseconds: 400), () {
+                    setState(() {
+                      isTextObscured = !isTextObscured;
+                    });
+                  });
+                },
+                duration: const Duration(milliseconds: 400),
+                splashColor: Colors.transparent,
+                icons: const <AnimatedIconItem>[
+                  AnimatedIconItem(icon: Icon(Icons.remove_red_eye_outlined)),
+                  AnimatedIconItem(icon: Icon(Icons.remove_red_eye)),
+                ],
+              ),
+              myController: passCont,
+              myHintText: 'Hasło',
+              myPrefixIcon: const Icon(Icons.key_rounded),
+              myKeyboardType: TextInputType.visiblePassword),
+          const SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.horizontal(
+                              left: Radius.circular(30))),
+                      foregroundColor: (_isLoginClicked)
+                          ? Colors.black
+                          : const Color.fromARGB(255, 173, 173, 173),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 15)),
+                  onPressed: () {
+                    setState(() {
+                      if (_isLoginClicked == false) {
+                        _isLoginClicked = true;
+                      } else {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: ((context) =>
+                        //             const GoogleOptions())));
+                      }
+                    });
+                  },
+                  child: Text("Zaloguj",
+                      style: GoogleFonts.overpass(
+                          fontSize: 20, fontWeight: FontWeight.bold))),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.horizontal(
+                              right: Radius.circular(30))),
+                      foregroundColor: (_isLoginClicked)
+                          ? const Color.fromARGB(255, 173, 173, 173)
+                          : Colors.black,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 15)),
+                  onPressed: () {
+                    setState(() {
+                      if (_isLoginClicked) {
+                        _isLoginClicked = false;
+                        _myOpacity = 1;
+                      } else {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: ((context) =>
+                        //             const GoogleOptions())));
+                      }
+                    });
+                  },
+                  child: Text("Zarejestruj",
+                      style: GoogleFonts.overpass(
+                          fontSize: 20, fontWeight: FontWeight.bold))),
+            ],
+          ),
+          Column(
+            children: [
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    final provider = Provider.of<GoogleSignInProvider>(context,
+                        listen: false);
+                    provider.googleLogin();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const GoogleOptions())));
+                  },
+                  icon: const FaIcon(FontAwesomeIcons.google),
+                  label: const Text("Zarejestruj się przez"),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.fromLTRB(30, 10, 35, 10),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(bottom: Radius.circular(50))),
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
