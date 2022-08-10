@@ -1,5 +1,6 @@
 import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flany/main.dart';
 import 'package:flany/providers/googlesignin.dart';
 import 'package:flany/providers/themes.dart';
 import 'package:flutter/material.dart';
@@ -107,9 +108,11 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
           ElevatedButton(
               onPressed: () {
                 if (_isLoggedWithGoogle) {
+                  print("wylogowano przez konto google");
                   Provider.of<GoogleSignInProvider>(context, listen: false)
                       .logout();
                 } else {
+                  print("wylogowano przez email i haslo");
                   FirebaseAuth.instance.signOut();
                 }
               },

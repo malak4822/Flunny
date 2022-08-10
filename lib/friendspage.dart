@@ -39,8 +39,6 @@ class _FriendsPageState extends State<FriendsPage> {
           onPressed: () async {
             if (!buttonClicked) {
               buttonClicked = true;
-            } else {
-              return;
             }
             animacja();
             await Future.delayed(const Duration(milliseconds: 500), () {
@@ -70,7 +68,6 @@ class _FriendsPageState extends State<FriendsPage> {
                     child: CircleAvatar(
                         radius: 70,
                         backgroundImage: AssetImage('images/user.png')
-
                         //user.photoURL!
                         ),
                   ),

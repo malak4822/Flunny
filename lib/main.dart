@@ -146,17 +146,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   horizontal: 30, vertical: 15)),
                           onPressed: () {
                             signIn();
-                            setState(() {
-                              if (_isLoginClicked == false) {
-                                _isLoginClicked = true;
-                              } else {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            const GoogleOptions())));
-                              }
-                            });
+
+                            _isLoginClicked = true;
                           },
                           child: _isLoginClicked
                               ? GradientText(
@@ -179,17 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 15)),
                           onPressed: () {
-                            setState(() {
-                              if (_isLoginClicked) {
-                                _isLoginClicked = false;
-                              } else {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) =>
-                                            const GoogleOptions())));
-                              }
-                            });
+                            _isLoginClicked = false;
                           },
                           child: _isLoginClicked
                               ? Text(

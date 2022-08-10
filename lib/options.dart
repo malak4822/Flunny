@@ -11,7 +11,7 @@ class GoogleOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _isLogged = Provider.of<GoogleSignInProvider>(context).loggedWithGoogle;
+    bool _isLoggedonGoogle = Provider.of<GoogleSignInProvider>(context).loggedWithGoogle;
     return Scaffold(
       body: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
@@ -19,13 +19,13 @@ class GoogleOptions extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasData) {
-              _isLogged = true;
+              _isLoggedonGoogle = true;
               return const FriendsPageEditable();
             } else if (snapshot.hasError) {
-              _isLogged = false;
+              _isLoggedonGoogle = false;
               return const Center(child: Text("Something is Wrong.."));
             } else {
-              _isLogged = false;
+              _isLoggedonGoogle = false;
               return const MyHomePage();
             }
           }),
