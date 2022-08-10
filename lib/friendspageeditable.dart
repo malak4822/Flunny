@@ -109,14 +109,12 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
           ),
           ElevatedButton(
               onPressed: () {
-                if (_isLoggedWithGoogle) {
-                  Provider.of<GoogleSignInProvider>(context, listen: false)
+               Provider.of<GoogleSignInProvider>(context, listen: false)
                       .logout();
                   print("wylogowano przez konto google");
-                } else {
-                  FirebaseAuth.instance.signOut();
+                    FirebaseAuth.instance.signOut();
                   print("wylogowano przez email i haslo");
-                }
+                
               },
               child: const Text("log out")),
           AnimatedIconButton(

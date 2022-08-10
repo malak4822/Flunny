@@ -37,6 +37,8 @@ class _FriendsPageState extends State<FriendsPage> {
         child: FloatingActionButton(
           shape: const CircleBorder(),
           onPressed: () async {
+            print("JESTEŚ ZALOGOWANY PRZEZ GOOGLE: $_isLoggedWithGoogle");
+           
             if (!buttonClicked) {
               buttonClicked = true;
             }
