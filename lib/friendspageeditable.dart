@@ -27,30 +27,32 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
           Padding(
             padding: const EdgeInsets.all(20),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    showModalBottomSheet(
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(80))),
-                        context: context,
-                        builder: ((builder) => bottomLine()));
-                  },
-                  child: CircleAvatar(
-                      radius: 72,
-                      child: _isLoggedWithGoogle
-                          ? CircleAvatar(
-                              radius: 70,
-                              backgroundImage: NetworkImage(user.photoURL!),
-                              child: imgShadow(),
-                            )
-                          : CircleAvatar(
-                              radius: 70,
-                              backgroundImage: AssetImage("images/user.png"),
-                              child: imgShadow(),
-                            )),
-                ),
+                // GestureDetector(
+                //   onTap: () {
+                //     showModalBottomSheet(
+                //         shape: const RoundedRectangleBorder(
+                //             borderRadius: BorderRadius.vertical(
+                //                 top: Radius.circular(80))),
+                //         context: context,
+                //         builder: ((builder) => bottomLine()));
+                //   },
+                // child: CircleAvatar(
+                //     radius: 72,
+                //     child: _isLoggedWithGoogle
+                //         ? CircleAvatar(
+                //             radius: 70,
+                //             backgroundImage: NetworkImage(user.photoURL!),
+                //             child: imgShadow(),
+                //           )
+                //         : CircleAvatar(
+                //             radius: 70,
+                //             backgroundImage:
+                //                 const AssetImage("images/user.png"),
+                //             child: imgShadow(),
+                //           )),
+                //     ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
@@ -68,12 +70,12 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
                               child: Icon(Icons.border_color, size: 35),
                             ),
                           ),
-                          Text(_isLoggedWithGoogle ? user.displayName! : "user",
-                              maxLines: 2,
-                              style: GoogleFonts.overpass(
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.white.withOpacity(0.3))),
+                          // Text(_isLoggedWithGoogle ? user.displayName! : "user",
+                          //     maxLines: 2,
+                          //     style: GoogleFonts.overpass(
+                          //         fontSize: 35,
+                          //         fontWeight: FontWeight.w900,
+                          //         color: Colors.white.withOpacity(0.3))),
                         ],
                       ),
                       const SizedBox(height: 5),
@@ -108,12 +110,12 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
           ElevatedButton(
               onPressed: () {
                 if (_isLoggedWithGoogle) {
-                  print("wylogowano przez konto google");
                   Provider.of<GoogleSignInProvider>(context, listen: false)
                       .logout();
+                  print("wylogowano przez konto google");
                 } else {
-                  print("wylogowano przez email i haslo");
                   FirebaseAuth.instance.signOut();
+                  print("wylogowano przez email i haslo");
                 }
               },
               child: const Text("log out")),

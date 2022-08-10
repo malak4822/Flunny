@@ -146,8 +146,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   horizontal: 30, vertical: 15)),
                           onPressed: () {
                             signIn();
-
-                            _isLoginClicked = true;
+                            setState(() {
+                              _isLoginClicked = true;
+                            });
                           },
                           child: _isLoginClicked
                               ? GradientText(
@@ -170,7 +171,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 15)),
                           onPressed: () {
-                            _isLoginClicked = false;
+                            setState(() {
+                              _isLoginClicked = false;
+                            });
                           },
                           child: _isLoginClicked
                               ? Text(
@@ -197,11 +200,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 context,
                                 listen: false);
                             provider.googleLogin();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: ((context) =>
-                                        const GoogleOptions())));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: ((context) =>
+                            //             const GoogleOptions())));
                           },
                           icon: const FaIcon(FontAwesomeIcons.google),
                           label: const Text("Zarejestruj się przez"),

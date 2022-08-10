@@ -62,34 +62,29 @@ class _FriendsPageState extends State<FriendsPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                if (_isLoggedWithGoogle)
-                  const CircleAvatar(
-                    radius: 72,
-                    child: CircleAvatar(
-                        radius: 70,
-                        backgroundImage: AssetImage('images/user.png')
-                        //user.photoURL!
-                        ),
-                  ),
-                if (_isLoggedWithGoogle)
-                  CircleAvatar(
-                    radius: 72,
-                    child: CircleAvatar(
-                        radius: 70,
-                        backgroundImage: NetworkImage(user.photoURL!)),
-                  ),
+                // CircleAvatar(
+                //     radius: 72,
+                //     child: _isLoggedWithGoogle
+                //         ? CircleAvatar(
+                //             radius: 70,
+                //             backgroundImage: NetworkImage(user.photoURL!),
+                //           )
+                //         : const CircleAvatar(
+                //             radius: 70,
+                //             backgroundImage: AssetImage("images/user.png"),
+                //           )),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
                     children: [
-                      Text(
-                        _isLoggedWithGoogle ? user.displayName! : "user",
-                        softWrap: true,
-                        maxLines: 2,
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.overpass(
-                            fontSize: 35, fontWeight: FontWeight.w900),
-                      ),
+                      // Text(
+                      //   _isLoggedWithGoogle ? user.displayName! : "user",
+                      //   softWrap: true,
+                      //   maxLines: 2,
+                      //   textAlign: TextAlign.center,
+                      //   style: GoogleFonts.overpass(
+                      //       fontSize: 35, fontWeight: FontWeight.w900),
+                      // ),
                       Text(user.email!,
                           maxLines: 4,
                           style: GoogleFonts.overpass(
