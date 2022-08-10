@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flany/friendspageeditable.dart';
+import 'package:flany/providers/googlesignin.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class FriendsPage extends StatefulWidget {
   const FriendsPage({Key? key}) : super(key: key);
@@ -24,6 +26,9 @@ class _FriendsPageState extends State<FriendsPage> {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
+
+    bool _isLoggedWithGoogle =
+        Provider.of<GoogleSignInProvider>(context).loggedWithGoogle;
 
     return Scaffold(
       floatingActionButton: AnimatedRotation(
@@ -59,20 +64,29 @@ class _FriendsPageState extends State<FriendsPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CircleAvatar(
-                  radius: 72,
-                 
-                  child: CircleAvatar(
-                    radius: 70,
-                    backgroundImage: NetworkImage(user.photoURL!),
+                if (_isLoggedWithGoogle)
+                  const CircleAvatar(
+                    radius: 72,
+                    child: CircleAvatar(
+                        radius: 70,
+                        backgroundImage: AssetImage('images/user.png')
+
+                        //user.photoURL!
+                        ),
                   ),
-                ),
+                if (_isLoggedWithGoogle)
+                  CircleAvatar(
+                    radius: 72,
+                    child: CircleAvatar(
+                        radius: 70,
+                        backgroundImage: NetworkImage(user.photoURL!)),
+                  ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
                     children: [
                       Text(
-                        user.displayName!,
+                        _isLoggedWithGoogle ? user.displayName! : "user",
                         softWrap: true,
                         maxLines: 2,
                         textAlign: TextAlign.center,

@@ -17,6 +17,8 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
+    bool _isLoggedWithGoogle =
+        Provider.of<GoogleSignInProvider>(context).loggedWithGoogle;
 
     return Scaffold(
       body: ListView(
@@ -35,13 +37,18 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
                         builder: ((builder) => bottomLine()));
                   },
                   child: CircleAvatar(
-                    radius: 72,
-                    child: CircleAvatar(
-                      radius: 70,
-                      backgroundImage: NetworkImage(user.photoURL!),
-                      child: imgShadow(),
-                    ),
-                  ),
+                      radius: 72,
+                      child: _isLoggedWithGoogle
+                          ? CircleAvatar(
+                              radius: 70,
+                              backgroundImage: NetworkImage(user.photoURL!),
+                              child: imgShadow(),
+                            )
+                          : CircleAvatar(
+                              radius: 70,
+                              backgroundImage: AssetImage("images/user.png"),
+                              child: imgShadow(),
+                            )),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
@@ -60,7 +67,7 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
                               child: Icon(Icons.border_color, size: 35),
                             ),
                           ),
-                          Text(user.displayName!,
+                          Text(_isLoggedWithGoogle ? user.displayName! : "user",
                               maxLines: 2,
                               style: GoogleFonts.overpass(
                                   fontSize: 35,
@@ -70,6 +77,7 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
                       ),
                       const SizedBox(height: 5),
                       Stack(
+                        alignment: Alignment.center,
                         children: [
                           Container(
                               alignment: Alignment.centerRight,
@@ -80,6 +88,7 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
                               ),
                               child: Text(user.email!,
                                   maxLines: 2,
+                                  textAlign: TextAlign.center,
                                   style: GoogleFonts.overpass(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w200,
@@ -95,15 +104,22 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
               ],
             ),
           ),
-          ElevatedButton(onPressed: (){
-            Provider.of<GoogleSignInProvider>(context, listen: false).logout();
-          }, child: Text("log out")),
+          ElevatedButton(
+              onPressed: () {
+                if (_isLoggedWithGoogle) {
+                  Provider.of<GoogleSignInProvider>(context, listen: false)
+                      .logout();
+                } else {
+                  FirebaseAuth.instance.signOut();
+                }
+              },
+              child: const Text("log out")),
           AnimatedIconButton(
             size: 44,
             animationDirection: const AnimationDirection.bounce(),
             onPressed: () {
               setState(() {
-                Provider.of<ThemesProvider>(context, listen: false) 
+                Provider.of<ThemesProvider>(context, listen: false)
                     .darkModeChanger();
               });
             },
