@@ -18,8 +18,6 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
-    bool _isLoggedWithGoogle =
-        Provider.of<GoogleSignInProvider>(context).loggedWithGoogle;
 
     return Scaffold(
       body: ListView(
@@ -109,12 +107,11 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
           ),
           ElevatedButton(
               onPressed: () {
-               Provider.of<GoogleSignInProvider>(context, listen: false)
-                      .logout();
-                  print("wylogowano przez konto google");
-                    FirebaseAuth.instance.signOut();
-                  print("wylogowano przez email i haslo");
-                
+                Provider.of<GoogleSignInProvider>(context, listen: false)
+                    .logout();
+
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (_) => const MyHomePage()));
               },
               child: const Text("log out")),
           AnimatedIconButton(

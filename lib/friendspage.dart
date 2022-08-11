@@ -15,20 +15,11 @@ class FriendsPage extends StatefulWidget {
 class _FriendsPageState extends State<FriendsPage> {
   double _turns = 0;
 
-  void animacja() {
-    setState(() {
-      _turns += 1 / 6;
-    });
-  }
-
   bool buttonClicked = false;
 
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
-
-    bool _isLoggedWithGoogle =
-        Provider.of<GoogleSignInProvider>(context).loggedWithGoogle;
 
     return Scaffold(
       floatingActionButton: AnimatedRotation(
@@ -37,12 +28,12 @@ class _FriendsPageState extends State<FriendsPage> {
         child: FloatingActionButton(
           shape: const CircleBorder(),
           onPressed: () async {
-            print("JESTEŚ ZALOGOWANY PRZEZ GOOGLE: $_isLoggedWithGoogle");
-           
             if (!buttonClicked) {
               buttonClicked = true;
             }
-            animacja();
+            setState(() {
+              _turns += 1 / 6;
+            });
             await Future.delayed(const Duration(milliseconds: 500), () {
               Navigator.push(
                   context,
@@ -66,7 +57,9 @@ class _FriendsPageState extends State<FriendsPage> {
               children: [
                 // CircleAvatar(
                 //     radius: 72,
-                //     child: _isLoggedWithGoogle
+                //     child: Provider.of<GoogleSignInProvider>(
+                //       context,
+                //     ).loggedWithGoogle
                 //         ? CircleAvatar(
                 //             radius: 70,
                 //             backgroundImage: NetworkImage(user.photoURL!),
@@ -97,6 +90,7 @@ class _FriendsPageState extends State<FriendsPage> {
               ],
             ),
           ),
+          ElevatedButton(onPressed: () {}, child: Text("checking"))
         ],
       ),
     );

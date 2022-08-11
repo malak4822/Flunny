@@ -48,16 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasData) {
-              Provider.of<GoogleSignInProvider>(context).loggedWithGoogle =
-                  true;
               return const FriendsPage();
             } else if (snapshot.hasError) {
-              Provider.of<GoogleSignInProvider>(context).loggedWithGoogle =
-                  false;
               return const Center(child: Text("Something is Wrong.."));
             } else {
-              Provider.of<GoogleSignInProvider>(context).loggedWithGoogle =
-                  false;
               return const LoginPage();
             }
           }),
