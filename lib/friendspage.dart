@@ -27,9 +27,6 @@ class _FriendsPageState extends State<FriendsPage> {
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
 
-    bool _isLoggedWithGoogle =
-        Provider.of<GoogleSignInProvider>(context).loggedWithGoogle;
-
     return Scaffold(
       floatingActionButton: AnimatedRotation(
         duration: const Duration(milliseconds: 500),
