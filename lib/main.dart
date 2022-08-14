@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flany/friendspage.dart';
+import 'package:flany/friendspageeditable.dart';
 import 'package:flany/loginpage.dart';
 import 'package:flany/providers/googlesignin.dart';
 import 'package:flany/providers/themes.dart';

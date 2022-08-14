@@ -1,9 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flany/friendspageeditable.dart';
-import 'package:flany/providers/googlesignin.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class FriendsPage extends StatefulWidget {
   const FriendsPage({Key? key}) : super(key: key);
@@ -19,8 +17,6 @@ class _FriendsPageState extends State<FriendsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
-
     return Scaffold(
       floatingActionButton: AnimatedRotation(
         duration: const Duration(milliseconds: 500),
@@ -57,9 +53,8 @@ class _FriendsPageState extends State<FriendsPage> {
               children: [
                 // CircleAvatar(
                 //     radius: 72,
-                //     child: Provider.of<GoogleSignInProvider>(
-                //       context,
-                //     ).loggedWithGoogle
+                //     child:
+                //     // CZY JESTES ZALOGOWANY PRZEZ GOOGLE ?
                 //         ? CircleAvatar(
                 //             radius: 70,
                 //             backgroundImage: NetworkImage(user.photoURL!),
@@ -67,11 +62,12 @@ class _FriendsPageState extends State<FriendsPage> {
                 //         : const CircleAvatar(
                 //             radius: 70,
                 //             backgroundImage: AssetImage("images/user.png"),
-                //           )),
+                //           )
+                //           ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
-                    children: [
+                    children:  [
                       // Text(
                       //   _isLoggedWithGoogle ? user.displayName! : "user",
                       //   softWrap: true,
@@ -90,7 +86,6 @@ class _FriendsPageState extends State<FriendsPage> {
               ],
             ),
           ),
-          ElevatedButton(onPressed: () {}, child: Text("checking"))
         ],
       ),
     );
