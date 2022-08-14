@@ -5,6 +5,7 @@ import 'package:flany/widgets/classes/inputwindows.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:keyboard_visibility_pro/keyboard_visibility_pro.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -29,22 +30,28 @@ class _LoginPageState extends State<LoginPage> {
         email: mailCont.text.trim(), password: passCont.text.trim());
   }
 
+  bool _keyboardVisibility = false;
   @override
   Widget build(BuildContext context) {
-    final _isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        AnimatedContainer(
-          curve: Curves.linearToEaseOut,
-          duration: const Duration(milliseconds: 300),
-          height: _isKeyboard ? 10 : 150,
-          child: const Image(
-            height: 150,
-            fit: BoxFit.scaleDown,
-            image: AssetImage('images/flunny_2_better.png'),
-          ),
-        ),
+        KeyboardVisibility(
+            child: AnimatedContainer(
+              height: _keyboardVisibility ? 0 : MediaQuery.of(context).size.height / 4.5,
+              width: _keyboardVisibility ? 0 : MediaQuery.of(context).size.height/ 4.5,
+              curve: Curves.linearToEaseOut,
+              duration: const Duration(milliseconds: 300),
+              child: const Image(
+                width: 50,
+                image: AssetImage('images/flunny_2_better.png'),
+              ),
+            ),
+            onChanged: (_isKeyboard) {
+              setState(() {
+                _keyboardVisibility = _isKeyboard;
+              });
+            }),
         if (!_isLoginClicked) const SizedBox(height: 15),
         AnimatedContainer(
           curve: Curves.linearToEaseOut,
