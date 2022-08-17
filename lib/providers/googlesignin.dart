@@ -48,12 +48,10 @@ class GoogleSignInProvider extends ChangeNotifier {
   Future logout() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user!.providerData[0].providerId == "google.com") {
-      print("byles zalogowany przez google");
       await googleSignIn.disconnect();
-    } else
-      print("nie");
-
-    FirebaseAuth.instance.signOut();
+    } else {
+      FirebaseAuth.instance.signOut();
+    }
   }
 // WYLOGOWYWANIE WYLOGOWYWANIE WYLOGOWYWANIE WYLOGOWYWANIE
 }

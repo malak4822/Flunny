@@ -93,7 +93,14 @@ class _FriendsPageState extends State<FriendsPage> {
               ],
             ),
           ),
-      
+          ElevatedButton(
+              onPressed: () {
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
+
+                provider.logout();
+              },
+              child: const Text("log out")),
         ],
       ),
     );

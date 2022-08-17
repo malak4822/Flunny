@@ -29,11 +29,41 @@ class _LoginPageState extends State<LoginPage> {
         email: mailCont.text.trim(), password: passCont.text.trim());
   }
 
+  Future signUp() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: mailCont.text.trim(), password: passCont.text.trim());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+  }
+
   bool _keyboardVisibility = false;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
+         Align(
+            alignment: Alignment.bottomRight,
+            child: Image(
+              height: MediaQuery.of(context).size.height / 7,
+              filterQuality: FilterQuality.none,
+              image: const AssetImage(("images/login/login_bottom.png")),
+            )),
+         Align(
+            alignment: Alignment.bottomLeft,
+            child: Image(
+              height: MediaQuery.of(context).size.height / 8,
+              filterQuality: FilterQuality.none,
+              image: const AssetImage(("images/login/main_bottom.png")),
+            )),
+        Align(
+            alignment: Alignment.topRight,
+            child: Image(
+              height: MediaQuery.of(context).size.height / 6,
+              filterQuality: FilterQuality.none,
+              image: const AssetImage(("images/login/main_top.png")),
+            )),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -49,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                   duration: const Duration(milliseconds: 300),
                   child: const Image(
                     width: 50,
-                    image: AssetImage('images/flunny_2_better.png'),
+                    image: AssetImage("images/logo/flunny_login.png"),
                   ),
                 ),
                 onChanged: (_isKeyboard) {
