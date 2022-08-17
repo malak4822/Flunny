@@ -38,6 +38,9 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+// 1 OPCJA - przeniesc StreamBuilder nad MyApp
+
+
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
@@ -48,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasData) {
+              //// 2 OPCJA - DODAĆ TU NAVIGATOR I PRZECZYTAĆ TO
               return const FriendsPage();
             } else if (snapshot.hasError) {
               return const Center(child: Text("Something is Wrong.."));
