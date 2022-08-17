@@ -1,6 +1,5 @@
 import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flany/providers/googlesignin.dart';
 import 'package:flany/providers/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,11 +12,10 @@ class FriendsPageEditable extends StatefulWidget {
   _FriendsPageEditableState createState() => _FriendsPageEditableState();
 }
 
-var user = FirebaseAuth.instance.currentUser!;
-
 class _FriendsPageEditableState extends State<FriendsPageEditable> {
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       body: ListView(
         children: [

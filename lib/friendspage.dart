@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flany/friendspageeditable.dart';
 import 'package:flany/providers/googlesignin.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class _FriendsPageState extends State<FriendsPage> {
 
   @override
   Widget build(BuildContext context) {
-
+    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       floatingActionButton: AnimatedRotation(
         duration: const Duration(milliseconds: 500),
@@ -77,6 +78,10 @@ class _FriendsPageState extends State<FriendsPage> {
                       //       fontSize: 35, fontWeight: FontWeight.w900),
                       // ),
                       Text(user.email!,
+                          maxLines: 4,
+                          style: GoogleFonts.overpass(
+                              fontSize: 17, fontWeight: FontWeight.w200)),
+                      Text(user.providerData.toString(),
                           maxLines: 4,
                           style: GoogleFonts.overpass(
                               fontSize: 17, fontWeight: FontWeight.w200))

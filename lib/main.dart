@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flany/friendspage.dart';
-import 'package:flany/friendspageeditable.dart';
 import 'package:flany/loginpage.dart';
 import 'package:flany/providers/googlesignin.dart';
 import 'package:flany/providers/themes.dart';
@@ -43,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder(
+      body: StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
