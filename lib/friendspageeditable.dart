@@ -13,7 +13,7 @@ class FriendsPageEditable extends StatefulWidget {
   _FriendsPageEditableState createState() => _FriendsPageEditableState();
 }
 
-final user = FirebaseAuth.instance.currentUser!;
+var user = FirebaseAuth.instance.currentUser!;
 
 class _FriendsPageEditableState extends State<FriendsPageEditable> {
   @override
@@ -104,14 +104,6 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
               ],
             ),
           ),
-          ElevatedButton(
-              onPressed: () {
-                final provider =
-                    Provider.of<GoogleSignInProvider>(context, listen: false);
-
-                provider.logout();
-              },
-              child: const Text("log out")),
           AnimatedIconButton(
             size: 44,
             animationDirection: const AnimationDirection.bounce(),

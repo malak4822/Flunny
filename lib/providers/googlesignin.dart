@@ -16,6 +16,7 @@ class GoogleSignInProvider extends ChangeNotifier {
         return;
       }
       _user = googleUser;
+
       final googleAuth = await googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
@@ -31,8 +32,13 @@ class GoogleSignInProvider extends ChangeNotifier {
   }
 
   Future logout() async {
-    await googleSignIn.disconnect();
+    var eee = FirebaseAuth.instance.currentUser;
+    if (eee!.providerData[0].providerId == "google.com") {
+      print("byles zalogowany przez google");
+      await googleSignIn.disconnect();
+    } else
+      print("nie");
+
     FirebaseAuth.instance.signOut();
-    notifyListeners();
   }
 }

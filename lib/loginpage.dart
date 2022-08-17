@@ -38,8 +38,12 @@ class _LoginPageState extends State<LoginPage> {
       children: [
         KeyboardVisibility(
             child: AnimatedContainer(
-              height: _keyboardVisibility ? 0 : MediaQuery.of(context).size.height / 4.5,
-              width: _keyboardVisibility ? 0 : MediaQuery.of(context).size.height/ 4.5,
+              height: _keyboardVisibility
+                  ? 0
+                  : MediaQuery.of(context).size.height / 4.5,
+              width: _keyboardVisibility
+                  ? 0
+                  : MediaQuery.of(context).size.height / 4.5,
               curve: Curves.linearToEaseOut,
               duration: const Duration(milliseconds: 300),
               child: const Image(
@@ -111,10 +115,11 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30, vertical: 15)),
                 onPressed: () {
-                  signIn();
-                  setState(() {
-                    _isLoginClicked = true;
-                  });
+                  setState(() {});
+                  if (_isLoginClicked) {
+                    signIn();
+                  }
+                  _isLoginClicked = true;
                 },
                 child: _isLoginClicked
                     ? GradientText(
@@ -137,6 +142,9 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30, vertical: 15)),
                 onPressed: () {
+                  if (!_isLoginClicked) {
+                    print("ZAREJESTROWANY");
+                  }
                   setState(() {
                     _isLoginClicked = false;
                   });

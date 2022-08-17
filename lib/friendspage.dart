@@ -1,7 +1,8 @@
-
 import 'package:flany/friendspageeditable.dart';
+import 'package:flany/providers/googlesignin.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class FriendsPage extends StatefulWidget {
   const FriendsPage({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class _FriendsPageState extends State<FriendsPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       floatingActionButton: AnimatedRotation(
         duration: const Duration(milliseconds: 500),
@@ -31,10 +33,8 @@ class _FriendsPageState extends State<FriendsPage> {
               _turns += 1 / 6;
             });
             await Future.delayed(const Duration(milliseconds: 500), () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const FriendsPageEditable()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const FriendsPageEditable()));
             });
             buttonClicked = !buttonClicked;
           },
@@ -67,7 +67,7 @@ class _FriendsPageState extends State<FriendsPage> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
-                    children:  [
+                    children: [
                       // Text(
                       //   _isLoggedWithGoogle ? user.displayName! : "user",
                       //   softWrap: true,
@@ -86,6 +86,14 @@ class _FriendsPageState extends State<FriendsPage> {
               ],
             ),
           ),
+          ElevatedButton(
+              onPressed: () {
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
+
+                provider.logout();
+              },
+              child: const Text("log out")),
         ],
       ),
     );

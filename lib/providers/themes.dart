@@ -12,16 +12,14 @@ class ThemesProvider extends ChangeNotifier {
 
 class ThemeOptions {
   static final black = ThemeData(
-    
-     
       backgroundColor: const Color.fromARGB(255, 83, 83, 83),
       colorScheme: const ColorScheme.dark(
         primary: Color.fromARGB(255, 90, 90, 90),
         onPrimary: Colors.white,
-        
       ));
 
   static final white = ThemeData(
-      colorScheme: const ColorScheme.light(onPrimary: Colors.white),
+      colorScheme: const ColorScheme.light(
+          primary: Color.fromARGB(255, 18, 169, 134), onPrimary: Colors.white),
       backgroundColor: const Color.fromARGB(255, 176, 176, 176));
 }
