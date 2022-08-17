@@ -3,6 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
+// LOGOWANIE PRZEZ EMAIL I HASŁO LOGOWANIE PRZEZ EMAIL I HASŁO
+
+  // bool isLoggedWithGoogle() {
+  //   if (currentUser!.providerData[0].providerId == "google.com") {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
+  final TextEditingController nameCont = TextEditingController();
+// LOGOWANIE PRZEZ EMAIL I HASŁO LOGOWANIE PRZEZ EMAIL I HASŁO
+
   final googleSignIn = GoogleSignIn();
 
   GoogleSignInAccount? _user;
@@ -31,9 +44,10 @@ class GoogleSignInProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+// WYLOGOWYWANIE WYLOGOWYWANIE WYLOGOWYWANIE WYLOGOWYWANIE
   Future logout() async {
-    var eee = FirebaseAuth.instance.currentUser;
-    if (eee!.providerData[0].providerId == "google.com") {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user!.providerData[0].providerId == "google.com") {
       print("byles zalogowany przez google");
       await googleSignIn.disconnect();
     } else
@@ -41,4 +55,5 @@ class GoogleSignInProvider extends ChangeNotifier {
 
     FirebaseAuth.instance.signOut();
   }
+// WYLOGOWYWANIE WYLOGOWYWANIE WYLOGOWYWANIE WYLOGOWYWANIE
 }

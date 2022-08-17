@@ -20,6 +20,10 @@ class _FriendsPageState extends State<FriendsPage> {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
+
+    // final _uLoggedWithGoogle =
+    //     Provider.of<GoogleSignInProvider>(context).isLoggedWithGoogle;
+
     return Scaffold(
       floatingActionButton: AnimatedRotation(
         duration: const Duration(milliseconds: 500),
@@ -54,8 +58,7 @@ class _FriendsPageState extends State<FriendsPage> {
               children: [
                 // CircleAvatar(
                 //     radius: 72,
-                //     child:
-                //     // CZY JESTES ZALOGOWANY PRZEZ GOOGLE ?
+                //     child: _uLoggedWithGoogle()
                 //         ? CircleAvatar(
                 //             radius: 70,
                 //             backgroundImage: NetworkImage(user.photoURL!),
@@ -63,14 +66,17 @@ class _FriendsPageState extends State<FriendsPage> {
                 //         : const CircleAvatar(
                 //             radius: 70,
                 //             backgroundImage: AssetImage("images/user.png"),
-                //           )
-                //           ),
+                //           )),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
                     children: [
                       // Text(
-                      //   _isLoggedWithGoogle ? user.displayName! : "user",
+                      //   _uLoggedWithGoogle()
+                      //       ? user.displayName!
+                      //       : Provider.of<GoogleSignInProvider>(context)
+                      //           .nameCont
+                      //           .text,
                       //   softWrap: true,
                       //   maxLines: 2,
                       //   textAlign: TextAlign.center,
@@ -81,24 +87,13 @@ class _FriendsPageState extends State<FriendsPage> {
                           maxLines: 4,
                           style: GoogleFonts.overpass(
                               fontSize: 17, fontWeight: FontWeight.w200)),
-                      Text(user.providerData.toString(),
-                          maxLines: 4,
-                          style: GoogleFonts.overpass(
-                              fontSize: 17, fontWeight: FontWeight.w200))
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          ElevatedButton(
-              onPressed: () {
-                final provider =
-                    Provider.of<GoogleSignInProvider>(context, listen: false);
-
-                provider.logout();
-              },
-              child: const Text("log out")),
+      
         ],
       ),
     );
