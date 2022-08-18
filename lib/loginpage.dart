@@ -43,14 +43,26 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-         Align(
+        Align(
             alignment: Alignment.bottomRight,
             child: Image(
               height: MediaQuery.of(context).size.height / 7,
               filterQuality: FilterQuality.none,
               image: const AssetImage(("images/login/login_bottom.png")),
             )),
-         Align(
+        const Align(
+            alignment: Alignment(0.2, 0.5),
+            child: Image(
+              filterQuality: FilterQuality.none,
+              image: AssetImage(("images/login/ball.png")),
+            )),
+        const Align(
+            alignment: Alignment(-0.2, -0.5),
+            child: Image(
+              filterQuality: FilterQuality.none,
+              image: AssetImage(("images/login/ball.png")),
+            )),
+        Align(
             alignment: Alignment.bottomLeft,
             child: Image(
               height: MediaQuery.of(context).size.height / 8,

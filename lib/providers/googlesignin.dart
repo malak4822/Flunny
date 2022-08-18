@@ -39,19 +39,16 @@ class GoogleSignInProvider extends ChangeNotifier {
 
       await FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
-      print(e.toString());
+      print(e);
     }
     notifyListeners();
   }
 
-// WYLOGOWYWANIE WYLOGOWYWANIE WYLOGOWYWANIE WYLOGOWYWANIE
   Future logout() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user!.providerData[0].providerId == "google.com") {
+    var eee = FirebaseAuth.instance.currentUser;
+    if (eee!.providerData[0].providerId == "google.com") {
       await googleSignIn.disconnect();
-    } else {
-      FirebaseAuth.instance.signOut();
     }
+    FirebaseAuth.instance.signOut();
   }
-// WYLOGOWYWANIE WYLOGOWYWANIE WYLOGOWYWANIE WYLOGOWYWANIE
 }

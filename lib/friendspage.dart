@@ -87,20 +87,14 @@ class _FriendsPageState extends State<FriendsPage> {
                           maxLines: 4,
                           style: GoogleFonts.overpass(
                               fontSize: 17, fontWeight: FontWeight.w200)),
+                      Text(user.providerData.toString()),
+                   
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          ElevatedButton(
-              onPressed: () {
-                final provider =
-                    Provider.of<GoogleSignInProvider>(context, listen: false);
-
-                provider.logout();
-              },
-              child: const Text("log out")),
         ],
       ),
     );

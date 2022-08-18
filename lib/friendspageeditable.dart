@@ -28,30 +28,30 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-              //   GestureDetector(
-              //     onTap: () {
-              //       showModalBottomSheet(
-              //           shape: const RoundedRectangleBorder(
-              //               borderRadius: BorderRadius.vertical(
-              //                   top: Radius.circular(80))),
-              //           context: context,
-              //           builder: ((builder) => bottomLine()));
-              //     },
-              //     // child: CircleAvatar(
-              //     //     radius: 72,
-              //     //     child: _uLoggedWithGoogle()
-              //     //         ? CircleAvatar(
-              //     //             radius: 70,
-              //     //             backgroundImage: NetworkImage(user.photoURL!),
-              //     //             child: imgShadow(),
-              //     //           )
-              //     //         : CircleAvatar(
-              //     //             radius: 70,
-              //     //             backgroundImage:
-              //     //                 const AssetImage("images/user.png"),
-              //     //             child: imgShadow(),
-              //     //           )),
-              //  ),
+                //   GestureDetector(
+                //     onTap: () {
+                //       showModalBottomSheet(
+                //           shape: const RoundedRectangleBorder(
+                //               borderRadius: BorderRadius.vertical(
+                //                   top: Radius.circular(80))),
+                //           context: context,
+                //           builder: ((builder) => bottomLine()));
+                //     },
+                //     // child: CircleAvatar(
+                //     //     radius: 72,
+                //     //     child: _uLoggedWithGoogle()
+                //     //         ? CircleAvatar(
+                //     //             radius: 70,
+                //     //             backgroundImage: NetworkImage(user.photoURL!),
+                //     //             child: imgShadow(),
+                //     //           )
+                //     //         : CircleAvatar(
+                //     //             radius: 70,
+                //     //             backgroundImage:
+                //     //                 const AssetImage("images/user.png"),
+                //     //             child: imgShadow(),
+                //     //           )),
+                //  ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
@@ -89,6 +89,14 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
               ],
             ),
           ),
+          ElevatedButton(
+              onPressed: () {
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
+
+                provider.logout();
+              },
+              child: const Text("log out")),
           AnimatedIconButton(
             size: 44,
             animationDirection: const AnimationDirection.bounce(),
@@ -112,7 +120,6 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
               )),
             ],
           ),
-    
         ],
       ),
     );
@@ -151,7 +158,7 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
                   style: GoogleFonts.overpass(
                       fontSize: 20, fontWeight: FontWeight.bold))
             ],
-          ))
+          )),
         ],
       ),
     );

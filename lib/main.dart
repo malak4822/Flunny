@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flany/friendspage.dart';
+import 'package:flany/friendspageeditable.dart';
 import 'package:flany/loginpage.dart';
 import 'package:flany/providers/googlesignin.dart';
 import 'package:flany/providers/themes.dart';
@@ -51,8 +52,9 @@ class _MyHomePageState extends State<MyHomePage> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasData) {
+              
               //// 2 OPCJA - DODAĆ TU NAVIGATOR I PRZECZYTAĆ TO
-              return const FriendsPage();
+              return const FriendsPageEditable();
             } else if (snapshot.hasError) {
               return const Center(child: Text("Something is Wrong.."));
             } else {
