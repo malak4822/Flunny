@@ -28,28 +28,21 @@ class _FriendsPageState extends State<FriendsPage> {
       floatingActionButton: AnimatedRotation(
         duration: const Duration(milliseconds: 500),
         turns: _turns,
-        child: Builder(
-          builder: (context) => FloatingActionButton(
-            shape: const CircleBorder(),
-            onPressed: () {
-              if (!buttonClicked) {
-                buttonClicked = true;
-              }
-              setState(() {
-                _turns += 1 / 6;
-              });
+        child: FloatingActionButton(
+          shape: const CircleBorder(),
+          onPressed: () {
+            if (!buttonClicked) {
+              buttonClicked = true;
+            }
+            setState(() {
+              _turns += 1 / 6;
+            });
 
-              buttonClicked = !buttonClicked;
-
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => FriendsPageEditable()));
-            },
-            child: const Icon(
-              Icons.settings,
-              size: 40,
-            ),
+            buttonClicked = !buttonClicked;
+          },
+          child: const Icon(
+            Icons.settings,
+            size: 40,
           ),
         ),
       ),
