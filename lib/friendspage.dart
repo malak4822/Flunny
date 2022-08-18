@@ -28,24 +28,28 @@ class _FriendsPageState extends State<FriendsPage> {
       floatingActionButton: AnimatedRotation(
         duration: const Duration(milliseconds: 500),
         turns: _turns,
-        child: FloatingActionButton(
-          shape: const CircleBorder(),
-          onPressed: () async {
-            if (!buttonClicked) {
-              buttonClicked = true;
-            }
-            setState(() {
-              _turns += 1 / 6;
-            });
-            await Future.delayed(const Duration(milliseconds: 500), () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const FriendsPageEditable()));
-            });
-            buttonClicked = !buttonClicked;
-          },
-          child: const Icon(
-            Icons.settings,
-            size: 40,
+        child: Builder(
+          builder: (context) => FloatingActionButton(
+            shape: const CircleBorder(),
+            onPressed: () {
+              if (!buttonClicked) {
+                buttonClicked = true;
+              }
+              setState(() {
+                _turns += 1 / 6;
+              });
+
+              buttonClicked = !buttonClicked;
+
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => FriendsPageEditable()));
+            },
+            child: const Icon(
+              Icons.settings,
+              size: 40,
+            ),
           ),
         ),
       ),
@@ -88,13 +92,20 @@ class _FriendsPageState extends State<FriendsPage> {
                           style: GoogleFonts.overpass(
                               fontSize: 17, fontWeight: FontWeight.w200)),
                       Text(user.providerData.toString()),
-                   
                     ],
                   ),
                 ),
               ],
             ),
           ),
+          ElevatedButton(
+              onPressed: () {
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
+
+                provider.logout();
+              },
+              child: const Text("log out")),
         ],
       ),
     );

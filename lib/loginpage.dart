@@ -210,14 +210,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         )
       ],
     );
   }
 
-  Widget wciecia(Alignment place, String path) {
+  wciecia(Alignment place, String path) {
     return Align(
         alignment: place,
         child: Image(
