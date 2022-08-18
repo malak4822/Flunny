@@ -43,39 +43,13 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Align(
-            alignment: Alignment.bottomRight,
-            child: Image(
-              height: MediaQuery.of(context).size.height / 7,
-              filterQuality: FilterQuality.none,
-              image: const AssetImage(("images/login/login_bottom.png")),
-            )),
-        const Align(
-            alignment: Alignment(0.2, 0.5),
-            child: Image(
-              filterQuality: FilterQuality.none,
-              image: AssetImage(("images/login/ball.png")),
-            )),
-        const Align(
-            alignment: Alignment(-0.2, -0.5),
-            child: Image(
-              filterQuality: FilterQuality.none,
-              image: AssetImage(("images/login/ball.png")),
-            )),
-        Align(
-            alignment: Alignment.bottomLeft,
-            child: Image(
-              height: MediaQuery.of(context).size.height / 8,
-              filterQuality: FilterQuality.none,
-              image: const AssetImage(("images/login/main_bottom.png")),
-            )),
-        Align(
-            alignment: Alignment.topRight,
-            child: Image(
-              height: MediaQuery.of(context).size.height / 6,
-              filterQuality: FilterQuality.none,
-              image: const AssetImage(("images/login/main_top.png")),
-            )),
+        // WCINKI WCINKI WCINKI WCINKI WCINKI WCINKI WCINKI WCINKI WCINKI
+        wciecia(Alignment.bottomRight, "images/login/login_bottomRight.png"),
+        wciecia(Alignment.bottomLeft, "images/login/login_bottomLeft.png"),
+        wciecia(Alignment.topLeft, "images/login/login_topLeft.png"),
+        wciecia(Alignment.topRight, "images/login/login_topRight.png"),
+
+        // LOGOWANIE LOGOWANIE LOGOWANIE LOGOWANIE LOGOWANIE LOGOWANIE LOGOWANIE
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -241,5 +215,15 @@ class _LoginPageState extends State<LoginPage> {
         )
       ],
     );
+  }
+
+  Widget wciecia(Alignment place, String path) {
+    return Align(
+        alignment: place,
+        child: Image(
+          height: MediaQuery.of(context).size.height / 6,
+          filterQuality: FilterQuality.none,
+          image: AssetImage((path)),
+        ));
   }
 }
