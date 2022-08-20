@@ -38,10 +38,8 @@ class _FriendsPageState extends State<FriendsPage> {
 
             buttonClicked = !buttonClicked;
 
-            Navigator.push(
-                (context),
-                MaterialPageRoute(
-                    builder: (_) => const FriendsPageEditable()));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const FriendsPageEditable()));
           },
           child: const Icon(
             Icons.settings,

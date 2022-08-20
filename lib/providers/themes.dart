@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ThemesProvider extends ChangeNotifier {
   bool darkModeOn = false;
@@ -16,7 +15,10 @@ class ThemesProvider extends ChangeNotifier {
 
 class ThemeOptions {
   static final black = ThemeData(
-      backgroundColor: const Color.fromARGB(255, 83, 83, 83),
+      appBarTheme:
+          const AppBarTheme(backgroundColor: Color.fromARGB(255, 19, 19, 19)),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Color.fromARGB(255, 19, 19, 19)),
       colorScheme: const ColorScheme.dark(
         primary: Color.fromARGB(255, 90, 90, 90),
         onPrimary: Colors.white,
