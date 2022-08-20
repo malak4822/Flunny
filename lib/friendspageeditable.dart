@@ -112,6 +112,14 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
               )),
             ],
           ),
+          ElevatedButton(
+              onPressed: () {
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
+
+                provider.logout();
+              },
+              child: const Text("log out")),
         ],
       ),
     );

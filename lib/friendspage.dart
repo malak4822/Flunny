@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flany/friendspageeditable.dart';
-import 'package:flany/providers/googlesignin.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class FriendsPage extends StatefulWidget {
   const FriendsPage({Key? key}) : super(key: key);
@@ -39,6 +37,11 @@ class _FriendsPageState extends State<FriendsPage> {
             });
 
             buttonClicked = !buttonClicked;
+
+            Navigator.push(
+                (context),
+                MaterialPageRoute(
+                    builder: (_) => const FriendsPageEditable()));
           },
           child: const Icon(
             Icons.settings,
@@ -91,14 +94,6 @@ class _FriendsPageState extends State<FriendsPage> {
               ],
             ),
           ),
-          ElevatedButton(
-              onPressed: () {
-                final provider =
-                    Provider.of<GoogleSignInProvider>(context, listen: false);
-
-                provider.logout();
-              },
-              child: const Text("log out")),
         ],
       ),
     );

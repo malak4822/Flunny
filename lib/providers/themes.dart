@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ThemesProvider extends ChangeNotifier {
   bool darkModeOn = false;
+  bool get dddd {
+    return darkModeOn;
+  }
 
   void darkModeChanger() {
     darkModeOn = !darkModeOn;

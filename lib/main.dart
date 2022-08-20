@@ -12,12 +12,26 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_) => GoogleSignInProvider()),
-      ChangeNotifierProvider(create: (_) => ThemesProvider()),
-    ],
-    child: const MyApp(),
-  ));
+      providers: [
+        ChangeNotifierProvider(create: (_) => GoogleSignInProvider()),
+        ChangeNotifierProvider(create: (_) => ThemesProvider())
+      ],
+      child: MaterialApp(
+        home: StreamBuilder<User?>(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasData) {
+                //// 2 OPCJA - DODAĆ TU NAVIGATOR I PRZECZYTAĆ TO
+                return const FriendsPage();
+              } else if (snapshot.hasError) {
+                return const Center(child: Text("Something is Wrong.."));
+              } else {
+                return const LoginPage();
+              }
+            }),
+      )));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,39 +42,11 @@ class MyApp extends StatelessWidget {
         theme: Provider.of<ThemesProvider>(context).darkModeOn
             ? ThemeOptions.white
             : ThemeOptions.black,
-        home: const MyHomePage(),
+        home: Scaffold(),
         debugShowCheckedModeBanner: false,
       );
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
 
 // 1 OPCJA - przeniesc StreamBuilder nad MyApp
 
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasData) {
-              
-              //// 2 OPCJA - DODAĆ TU NAVIGATOR I PRZECZYTAĆ TO
-              return const FriendsPageEditable();
-            } else if (snapshot.hasError) {
-              return const Center(child: Text("Something is Wrong.."));
-            } else {
-              return const LoginPage();
-            }
-          }),
-    );
-  }
-}

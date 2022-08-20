@@ -45,8 +45,8 @@ class GoogleSignInProvider extends ChangeNotifier {
   }
 
   Future logout() async {
-    var eee = FirebaseAuth.instance.currentUser;
-    if (eee!.providerData[0].providerId == "google.com") {
+    var user = FirebaseAuth.instance.currentUser;
+    if (user!.providerData[0].providerId == "google.com") {
       await googleSignIn.disconnect();
     }
     FirebaseAuth.instance.signOut();
