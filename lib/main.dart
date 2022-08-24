@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flany/friendspage.dart';
+import 'package:flany/userpage.dart';
 import 'package:flany/home.dart';
 import 'package:flany/loginpage.dart';
 import 'package:flany/providers/googlesignin.dart';

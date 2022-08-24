@@ -6,20 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class FriendsPageEditable extends StatefulWidget {
-  const FriendsPageEditable({Key? key}) : super(key: key);
+class UserSettingsPage extends StatefulWidget {
+  const UserSettingsPage({Key? key}) : super(key: key);
 
   @override
-  _FriendsPageEditableState createState() => _FriendsPageEditableState();
+  _UserSettingsPageState createState() => _UserSettingsPageState();
 }
 
-class _FriendsPageEditableState extends State<FriendsPageEditable> {
+class _UserSettingsPageState extends State<UserSettingsPage> {
   @override
   Widget build(BuildContext context) {
-    // final _uLoggedWithGoogle =
-    //     Provider.of<GoogleSignInProvider>(context).isLoggedWithGoogle;
-
     final user = FirebaseAuth.instance.currentUser!;
+    final _uLoggedWithGoogle =
+        Provider.of<GoogleSignInProvider>(context).isLoggedWithGoogle;
+
     return Scaffold(
       body: ListView(
         children: [
@@ -28,30 +28,30 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                //   GestureDetector(
-                //     onTap: () {
-                //       showModalBottomSheet(
-                //           shape: const RoundedRectangleBorder(
-                //               borderRadius: BorderRadius.vertical(
-                //                   top: Radius.circular(80))),
-                //           context: context,
-                //           builder: ((builder) => bottomLine()));
-                //     },
-                //     // child: CircleAvatar(
-                //     //     radius: 72,
-                //     //     child: _uLoggedWithGoogle()
-                //     //         ? CircleAvatar(
-                //     //             radius: 70,
-                //     //             backgroundImage: NetworkImage(user.photoURL!),
-                //     //             child: imgShadow(),
-                //     //           )
-                //     //         : CircleAvatar(
-                //     //             radius: 70,
-                //     //             backgroundImage:
-                //     //                 const AssetImage("images/user.png"),
-                //     //             child: imgShadow(),
-                //     //           )),
-                //  ),
+                GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(80))),
+                        context: context,
+                        builder: ((builder) => bottomLine()));
+                  },
+                  child: CircleAvatar(
+                      radius: 72,
+                      child: _uLoggedWithGoogle()
+                          ? CircleAvatar(
+                              radius: 70,
+                              backgroundImage: NetworkImage(user.photoURL!),
+                              child: imgShadow(),
+                            )
+                          : CircleAvatar(
+                              radius: 70,
+                              backgroundImage:
+                                  const AssetImage("images/user/user.png"),
+                              child: imgShadow(),
+                            )),
+                ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
@@ -59,13 +59,13 @@ class _FriendsPageEditableState extends State<FriendsPageEditable> {
                       Stack(
                         alignment: Alignment.center,
                         children: [
-                          // Text(
-                          //     _uLoggedWithGoogle() ? user.displayName! : "user",
-                          //     maxLines: 2,
-                          //     style: GoogleFonts.overpass(
-                          //       fontSize: 30,
-                          //       fontWeight: FontWeight.w900,
-                          //     )),
+                          Text(
+                              _uLoggedWithGoogle() ? user.displayName! : "user",
+                              maxLines: 2,
+                              style: GoogleFonts.overpass(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w900,
+                              )),
                           blackie(30),
                         ],
                       ),

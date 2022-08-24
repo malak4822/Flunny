@@ -5,15 +5,17 @@ import 'package:google_sign_in/google_sign_in.dart';
 class GoogleSignInProvider extends ChangeNotifier {
 // LOGOWANIE PRZEZ EMAIL I HASŁO LOGOWANIE PRZEZ EMAIL I HASŁO
 
-  // bool isLoggedWithGoogle() {
-  //   if (currentUser!.providerData[0].providerId == "google.com") {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+  bool isLoggedWithGoogle() {
+    var provUser = FirebaseAuth.instance.currentUser;
+    if (provUser?.providerData[0].providerId == "google.com") {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   final TextEditingController nameCont = TextEditingController();
+
 // LOGOWANIE PRZEZ EMAIL I HASŁO LOGOWANIE PRZEZ EMAIL I HASŁO
 
   final googleSignIn = GoogleSignIn();
@@ -45,8 +47,8 @@ class GoogleSignInProvider extends ChangeNotifier {
   }
 
   Future logout() async {
-    var user = FirebaseAuth.instance.currentUser;
-    if (user!.providerData[0].providerId == "google.com") {
+    var provUser = FirebaseAuth.instance.currentUser;
+    if (provUser!.providerData[0].providerId == "google.com") {
       await googleSignIn.disconnect();
     }
     FirebaseAuth.instance.signOut();
