@@ -1,7 +1,6 @@
 import 'package:flany/userpage.dart';
 import 'package:flany/widgets/game.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, firTime, secTime}) : super(key: key);

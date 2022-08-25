@@ -10,6 +10,7 @@ class GoogleSignInProvider extends ChangeNotifier {
     if (provUser?.providerData[0].providerId == "google.com") {
       return true;
     } else {
+      notifyListeners();
       return false;
     }
   }

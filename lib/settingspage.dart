@@ -60,7 +60,11 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                         alignment: Alignment.center,
                         children: [
                           Text(
-                              _uLoggedWithGoogle() ? user.displayName! : "user",
+                              _uLoggedWithGoogle()
+                                  ? user.displayName!
+                                  : Provider.of<GoogleSignInProvider>(context)
+                                      .nameCont
+                                      .text,
                               maxLines: 2,
                               style: GoogleFonts.overpass(
                                 fontSize: 30,

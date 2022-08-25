@@ -161,6 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                             horizontal: 30, vertical: 15)),
                     onPressed: () {
                       if (!_isLoginClicked) {
+                        signUp();
                         print("ZAREJESTROWANY");
                       }
                       setState(() {
@@ -220,10 +221,12 @@ class _LoginPageState extends State<LoginPage> {
   wciecia(Alignment place, String path) {
     return Align(
         alignment: place,
-        child: Image(
+        child: FadeInImage(
           height: MediaQuery.of(context).size.height / 6,
-          filterQuality: FilterQuality.none,
+          placeholderFit: BoxFit.scaleDown,
+          fadeInDuration: const Duration(milliseconds: 500),
           image: AssetImage((path)),
+          placeholder: AssetImage((path)),
         ));
   }
 }
