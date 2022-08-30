@@ -10,12 +10,11 @@ class GoogleSignInProvider extends ChangeNotifier {
     if (provUser?.providerData[0].providerId == "google.com") {
       return true;
     } else {
-      notifyListeners();
       return false;
     }
   }
 
-  final TextEditingController nameCont = TextEditingController();
+  TextEditingController nameCont = TextEditingController();
 
 // LOGOWANIE PRZEZ EMAIL I HASŁO LOGOWANIE PRZEZ EMAIL I HASŁO
 

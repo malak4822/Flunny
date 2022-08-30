@@ -162,11 +162,15 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       if (!_isLoginClicked) {
                         signUp();
-                        print("ZAREJESTROWANY");
                       }
                       setState(() {
                         _isLoginClicked = false;
                       });
+
+                      Provider.of<GoogleSignInProvider>(context, listen: false)
+                              .nameCont
+                              .text =
+                          FirebaseAuth.instance.currentUser!.displayName!;
                     },
                     child: _isLoginClicked
                         ? Text(

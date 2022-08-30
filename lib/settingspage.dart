@@ -62,9 +62,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                           Text(
                               _uLoggedWithGoogle()
                                   ? user.displayName!
-                                  : Provider.of<GoogleSignInProvider>(context)
-                                      .nameCont
-                                      .text,
+                                  : "user",
                               maxLines: 2,
                               style: GoogleFonts.overpass(
                                 fontSize: 30,

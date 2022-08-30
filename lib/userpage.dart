@@ -74,9 +74,7 @@ class _UserPageState extends State<UserPage> {
                       Text(
                         _uLoggedWithGoogle()
                             ? user.displayName!
-                            : Provider.of<GoogleSignInProvider>(context)
-                                .nameCont
-                                .text,
+                            : "user",
                         softWrap: true,
                         maxLines: 2,
                         textAlign: TextAlign.center,
