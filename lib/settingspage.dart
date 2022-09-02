@@ -60,9 +60,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                         alignment: Alignment.center,
                         children: [
                           Text(
-                              _uLoggedWithGoogle()
-                                  ? user.displayName!
-                                  : "user",
+                              _uLoggedWithGoogle() ? user.displayName! : "user",
                               maxLines: 2,
                               style: GoogleFonts.overpass(
                                 fontSize: 30,
@@ -91,37 +89,61 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
               ],
             ),
           ),
-          AnimatedIconButton(
-            size: 44,
-            animationDirection: const AnimationDirection.bounce(),
-            onPressed: () {
-              setState(() {
-                Provider.of<ThemesProvider>(context, listen: false)
-                    .darkModeChanger();
-              });
-            },
-            duration: const Duration(milliseconds: 400),
-            splashColor: Colors.transparent,
-            icons: const <AnimatedIconItem>[
-              AnimatedIconItem(
-                  icon: Icon(
-                Icons.wb_sunny_rounded,
-              )),
-              AnimatedIconItem(
-                  icon: Icon(
-                Icons.nights_stay_rounded,
-                color: Colors.black,
-              )),
-            ],
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              AnimatedIconButton(
+                size: 44,
+                animationDirection: const AnimationDirection.bounce(),
+                onPressed: () {
+                  setState(() {
+                    Provider.of<ThemesProvider>(context, listen: false)
+                        .darkModeChanger();
+                  });
+                },
+                duration: const Duration(milliseconds: 400),
+                splashColor: Colors.transparent,
+                icons: const <AnimatedIconItem>[
+                  AnimatedIconItem(
+                      icon: Icon(
+                    Icons.wb_sunny_rounded,
+                  )),
+                  AnimatedIconItem(
+                      icon: Icon(
+                    Icons.nights_stay_rounded,
+                    color: Colors.black,
+                  )),
+                ],
+              ),
+              Text(
+                "Change theme",
+                style: GoogleFonts.overpass(
+                    fontSize: 30, fontWeight: FontWeight.bold),
+              )
+            ]),
           ),
-          ElevatedButton(
-              onPressed: () {
-                final provider =
-                    Provider.of<GoogleSignInProvider>(context, listen: false);
+          ConstrainedBox(
+              constraints: const BoxConstraints.tightFor(height: 80),
+              child: FittedBox(
+                  child: ElevatedButton(
+                      child: Text("Wyloguj się",
+                          style: GoogleFonts.overpass(
+                              fontSize: 30, fontWeight: FontWeight.bold)),
+                      onPressed: () {
+                        final provider = Provider.of<GoogleSignInProvider>(
+                            context,
+                            listen: false);
 
-                provider.logout();
-              },
-              child: const Text("log out")),
+                        provider.logout();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 13.0),
+                        shadowColor: Colors.greenAccent,
+                        elevation: 13,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32.0)),
+                      ))))
         ],
       ),
     );
