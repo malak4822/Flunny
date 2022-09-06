@@ -167,10 +167,10 @@ class _LoginPageState extends State<LoginPage> {
                         _isLoginClicked = false;
                       });
 
-                      Provider.of<GoogleSignInProvider>(context, listen: false)
-                              .nameCont
-                              .text =
-                          FirebaseAuth.instance.currentUser!.displayName!;
+                      // Provider.of<GoogleSignInProvider>(context, listen: false)
+                      //         .nameCont
+                      //         .text =
+                      //     FirebaseAuth.instance.currentUser!.displayName!;
                     },
                     child: _isLoginClicked
                         ? Text(

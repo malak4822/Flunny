@@ -28,36 +28,29 @@ class MyApp extends StatelessWidget {
         theme: Provider.of<ThemesProvider>(context).darkModeOn
             ? ThemeOptions.white
             : ThemeOptions.black,
-        home: const StartPage(),
+        home: Scaffold(
+            body: StreamBuilder<User?>(
+                stream: FirebaseAuth.instance.authStateChanges(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasData) {
+                    //// 2 OPCJA - DODAĆ TU NAVIGATOR I PRZECZYTAĆ TO
+                    return const HomePage();
+                  } else if (snapshot.hasError) {
+                    return const Center(child: Text("Something went Wrong.."));
+                  } else {
+                    return const LoginPage();
+                  }
+                })),
       );
 }
 
-class StartPage extends StatefulWidget {
-  const StartPage({Key? key}) : super(key: key);
-  @override
-  State<StartPage> createState() => _MyStartPage();
-}
+
 
 // 1 OPCJA - przeniesc StreamBuilder nad MyApp
 
-class _MyStartPage extends State<StartPage> {
-  @override
-  Widget build(BuildContext context) => Scaffold(
-      body: StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasData) {
-              //// 2 OPCJA - DODAĆ TU NAVIGATOR I PRZECZYTAĆ TO
-              return const HomePage();
-            } else if (snapshot.hasError) {
-              return const Center(child: Text("Something went Wrong.."));
-            } else {
-              return const LoginPage();
-            }
-          }));
-}
+
 
 // 1 OPCJA - przeniesc StreamBuilder nad MyApp
 

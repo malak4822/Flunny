@@ -89,52 +89,39 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
               ],
             ),
           ),
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              AnimatedIconButton(
-                size: 44,
-                animationDirection: const AnimationDirection.bounce(),
-                onPressed: () {
-                  setState(() {
-                    Provider.of<ThemesProvider>(context, listen: false)
-                        .darkModeChanger();
-                  });
-                },
-                duration: const Duration(milliseconds: 400),
-                splashColor: Colors.transparent,
-                icons: const <AnimatedIconItem>[
-                  AnimatedIconItem(
-                      icon: Icon(
-                    Icons.wb_sunny_rounded,
-                  )),
-                  AnimatedIconItem(
-                      icon: Icon(
-                    Icons.nights_stay_rounded,
-                    color: Colors.black,
-                  )),
-                ],
-              ),
-              Text(
-                "Change theme",
-                style: GoogleFonts.overpass(
-                    fontSize: 30, fontWeight: FontWeight.bold),
-              )
-            ]),
-          ),
+       
           ConstrainedBox(
               constraints: const BoxConstraints.tightFor(height: 80),
               child: FittedBox(
                   child: ElevatedButton(
-                      child: Text("Wyloguj się",
+                      child: Text("log out",
                           style: GoogleFonts.overpass(
-                              fontSize: 30, fontWeight: FontWeight.bold)),
+                              fontSize: 20, fontWeight: FontWeight.bold)),
                       onPressed: () {
                         final provider = Provider.of<GoogleSignInProvider>(
                             context,
                             listen: false);
 
                         provider.logout();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 13.0),
+                        shadowColor: Colors.greenAccent,
+                        elevation: 13,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32.0)),
+                      )))),
+          const SizedBox(height: 30),
+          ConstrainedBox(
+              constraints: const BoxConstraints.tightFor(height: 80),
+              child: FittedBox(
+                  child: ElevatedButton(
+                      child: Text("go back",
+                          style: GoogleFonts.overpass(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
+                      onPressed: () {
+                        Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(

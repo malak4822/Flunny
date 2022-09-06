@@ -14,7 +14,6 @@ class UserPage extends StatefulWidget {
 
 class _UserPageState extends State<UserPage> {
   double _turns = 0;
-
   bool buttonClicked = false;
 
   @override
@@ -40,8 +39,8 @@ class _UserPageState extends State<UserPage> {
 
             buttonClicked = !buttonClicked;
 
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const UserSettingsPage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const UserSettingsPage()));
           },
           child: const Icon(
             Icons.settings,
@@ -72,9 +71,7 @@ class _UserPageState extends State<UserPage> {
                   child: Column(
                     children: [
                       Text(
-                        _uLoggedWithGoogle()
-                            ? user.displayName!
-                            : "user",
+                        _uLoggedWithGoogle() ? user.displayName! : "user",
                         softWrap: true,
                         maxLines: 2,
                         textAlign: TextAlign.center,
