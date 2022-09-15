@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flany/userpage.dart';
 import 'package:flany/home.dart';
 import 'package:flany/loginpage.dart';
 import 'package:flany/providers/googlesignin.dart';
@@ -35,6 +34,7 @@ class MyApp extends StatelessWidget {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasData) {
+                    
                     //// 2 OPCJA - DODAĆ TU NAVIGATOR I PRZECZYTAĆ TO
                     return const HomePage();
                   } else if (snapshot.hasError) {

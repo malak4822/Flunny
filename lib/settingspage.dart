@@ -1,7 +1,5 @@
-import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flany/providers/googlesignin.dart';
-import 'package:flany/providers/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
