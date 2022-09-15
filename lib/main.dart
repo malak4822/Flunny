@@ -4,6 +4,8 @@ import 'package:flany/loginpage.dart';
 import 'package:flany/providers/googlesignin.dart';
 import 'package:flany/providers/themes.dart';
 import 'package:flany/providers/zmienne.dart';
+import 'package:flany/settingspage.dart';
+import 'package:flany/userpage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,21 +30,22 @@ class MyApp extends StatelessWidget {
             ? ThemeOptions.white
             : ThemeOptions.black,
         home: Scaffold(
-            body: StreamBuilder<User?>(
-                stream: FirebaseAuth.instance.authStateChanges(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasData) {
-                    
-                    //// 2 OPCJA - DODAĆ TU NAVIGATOR I PRZECZYTAĆ TO
-                    return const HomePage();
-                  } else if (snapshot.hasError) {
-                    return const Center(child: Text("Something went Wrong.."));
-                  } else {
-                    return const LoginPage();
-                  }
-                })),
+          body: StreamBuilder(
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasData) {
+                //// 2 OPCJA - DODAĆ TU NAVIGATOR I PRZECZYTAĆ TO
+                return const UserPage();
+              } else if (snapshot.hasError) {
+                return const Center(child: Text("Something went Wrong.."));
+              } else {
+                return const LoginPage();
+              }
+            },
+            stream: FirebaseAuth.instance.authStateChanges(),
+          ),
+        ),
       );
 }
 
