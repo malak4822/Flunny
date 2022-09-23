@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "175501093692-apd5vdn5jk1e0oviqcn7co2o6g6ehd9o.apps.googleusercontent.com",
+          "client_id": "175501093692-no51petvbg8ac78q6ep5eiklldhtfer5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.fluny",
@@ -37,6 +37,13 @@
             {
               "client_id": "175501093692-t0k9cbgp54fm4s2tnbvltsphdlsbg6ic.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "175501093692-l4poijeq2ta6vkpcc6uct0h49iuleo1n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fluny"
+              }
             }
           ]
         }
