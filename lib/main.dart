@@ -30,30 +30,20 @@ class MyApp extends StatelessWidget {
             ? ThemeOptions.white
             : ThemeOptions.black,
         home: Scaffold(
-          body: StreamBuilder(
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasData) {
-                //// 2 OPCJA - DODAĆ TU NAVIGATOR I PRZECZYTAĆ TO
-                return const UserPage();
-              } else if (snapshot.hasError) {
-                return const Center(child: Text("Something went Wrong.."));
-              } else {
-                return const LoginPage();
-              }
-            },
-            stream: FirebaseAuth.instance.authStateChanges(),
-          ),
-        ),
+            body: StreamBuilder(
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasData) {
+              //// 2 OPCJA - DODAĆ TU NAVIGATOR I PRZECZYTAĆ TO
+              return const HomePage();
+            } else if (snapshot.hasError) {
+              return const Center(child: Text("Something went Wrong.."));
+            } else {
+              return const LoginPage();
+            }
+          },
+          stream: FirebaseAuth.instance.authStateChanges(),
+        )),
       );
 }
-
-
-
-// 1 OPCJA - przeniesc StreamBuilder nad MyApp
-
-
-
-// 1 OPCJA - przeniesc StreamBuilder nad MyApp
-

@@ -38,7 +38,7 @@ class _UserPageState extends State<UserPage> {
             });
 
             buttonClicked = !buttonClicked;
-
+// popycha go ale rdzeń tego odpychania dalej zostaje w MaterialApp
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const UserSettingsPage()));
           },

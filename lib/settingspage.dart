@@ -14,42 +14,44 @@ class UserSettingsPage extends StatefulWidget {
 class _UserSettingsPageState extends State<UserSettingsPage> {
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
+    final provider = Provider.of<GoogleSignInProvider>(context, listen: true);
+
     final _uLoggedWithGoogle =
         Provider.of<GoogleSignInProvider>(context).isLoggedWithGoogle;
 
     return Scaffold(
       body: ListView(
         children: [
+          Text('You are logged ${_uLoggedWithGoogle() ? 'in' : 'out'}'),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    showModalBottomSheet(
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(80))),
-                        context: context,
-                        builder: ((builder) => bottomLine()));
-                  },
-                  child: CircleAvatar(
-                      radius: 72,
-                      child: _uLoggedWithGoogle()
-                          ? CircleAvatar(
-                              radius: 70,
-                              backgroundImage: NetworkImage(user.photoURL!),
-                              child: imgShadow(),
-                            )
-                          : CircleAvatar(
-                              radius: 70,
-                              backgroundImage:
-                                  const AssetImage("images/user/user.png"),
-                              child: imgShadow(),
-                            )),
-                ),
+                // GestureDetector(
+                //   onTap: () {
+                //     showModalBottomSheet(
+                //         shape: const RoundedRectangleBorder(
+                //             borderRadius: BorderRadius.vertical(
+                //                 top: Radius.circular(80))),
+                //         context: context,
+                //         builder: ((builder) => bottomLine()));
+                //   },
+                //   child: CircleAvatar(
+                //       radius: 72,
+                //       child: _uLoggedWithGoogle()
+                //           ? CircleAvatar(
+                //               radius: 70,
+                //               backgroundImage: NetworkImage(user.photoURL!),
+                //               child: imgShadow(),
+                //             )
+                //           : CircleAvatar(
+                //               radius: 70,
+                //               backgroundImage:
+                //                   const AssetImage("images/user/user.png"),
+                //               child: imgShadow(),
+                //             )),
+                // ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
@@ -57,13 +59,13 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                       Stack(
                         alignment: Alignment.center,
                         children: [
-                          Text(
-                              _uLoggedWithGoogle() ? user.displayName! : "user",
-                              maxLines: 2,
-                              style: GoogleFonts.overpass(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w900,
-                              )),
+                          // Text(
+                          //     _uLoggedWithGoogle() ? user.displayName! : "user",
+                          //     maxLines: 2,
+                          //     style: GoogleFonts.overpass(
+                          //       fontSize: 30,
+                          //       fontWeight: FontWeight.w900,
+                          //     )),
                           blackie(30),
                         ],
                       ),
@@ -71,13 +73,13 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                       Stack(
                         alignment: Alignment.center,
                         children: [
-                          Text(user.email!,
-                              maxLines: 2,
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.overpass(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w200,
-                              )),
+                          // Text(user.email!,
+                          //     maxLines: 2,
+                          //     textAlign: TextAlign.center,
+                          //     style: GoogleFonts.overpass(
+                          //       fontSize: 16,
+                          //       fontWeight: FontWeight.w200,
+                          //     )),
                           blackie(10),
                         ],
                       )
@@ -87,26 +89,20 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
               ],
             ),
           ),
-       
           ConstrainedBox(
               constraints: const BoxConstraints.tightFor(height: 80),
               child: FittedBox(
                   child: ElevatedButton(
                       child: Text("log out",
                           style: GoogleFonts.overpass(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
+                              fontSize: 15, fontWeight: FontWeight.bold)),
                       onPressed: () {
-                        final provider = Provider.of<GoogleSignInProvider>(
-                            context,
-                            listen: false);
-
                         provider.logout();
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 13.0),
-                        shadowColor: Colors.greenAccent,
-                        elevation: 13,
+                            horizontal: 15.0, vertical: 10.0),
+                        elevation: 0,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(32.0)),
                       )))),
@@ -117,15 +113,14 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                   child: ElevatedButton(
                       child: Text("go back",
                           style: GoogleFonts.overpass(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
+                              fontSize: 15, fontWeight: FontWeight.bold)),
                       onPressed: () {
                         Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(
+                        elevation: 0,
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 13.0),
-                        shadowColor: Colors.greenAccent,
-                        elevation: 13,
+                            horizontal: 15.0, vertical: 10.0),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(32.0)),
                       ))))

@@ -8,10 +8,23 @@ class GoogleSignInProvider extends ChangeNotifier {
   bool isLoggedWithGoogle() {
     var provUser = FirebaseAuth.instance.currentUser;
     if (provUser?.providerData[0].providerId == "google.com") {
+      notifyListeners();
       return true;
     } else {
+      notifyListeners();
       return false;
     }
+  }
+
+  Future logout() async {
+    var provUser = FirebaseAuth.instance.currentUser;
+    if (provUser!.providerData[0].providerId == "google.com") {
+      await googleSignIn.disconnect();
+    }
+    FirebaseAuth.instance.signOut();
+    isLoggedWithGoogle() == false;
+
+    notifyListeners();
   }
 
   TextEditingController nameCont = TextEditingController();
@@ -44,13 +57,5 @@ class GoogleSignInProvider extends ChangeNotifier {
       print(e);
     }
     notifyListeners();
-  }
-
-  Future logout() async {
-    var provUser = FirebaseAuth.instance.currentUser;
-    if (provUser!.providerData[0].providerId == "google.com") {
-      await googleSignIn.disconnect();
-    }
-    FirebaseAuth.instance.signOut();
   }
 }
