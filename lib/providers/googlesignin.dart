@@ -8,10 +8,8 @@ class GoogleSignInProvider extends ChangeNotifier {
   bool isLoggedWithGoogle() {
     var provUser = FirebaseAuth.instance.currentUser;
     if (provUser?.providerData[0].providerId == "google.com") {
-      notifyListeners();
       return true;
     } else {
-      notifyListeners();
       return false;
     }
   }

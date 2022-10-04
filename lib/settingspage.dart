@@ -98,6 +98,9 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                               fontSize: 15, fontWeight: FontWeight.bold)),
                       onPressed: () {
                         provider.logout();
+
+                        // Doing here something like this isn't correct way to fix it
+                        // because screen should be rebuilded automatically
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(
