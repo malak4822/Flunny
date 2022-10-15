@@ -197,11 +197,6 @@ class _LoginPageState extends State<LoginPage> {
                           context,
                           listen: false);
                       provider.googleLogin();
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: ((context) =>
-                      //             const GoogleOptions())));
                     },
                     icon: const FaIcon(FontAwesomeIcons.google),
                     label: const Text("Zarejestruj się przez"),
