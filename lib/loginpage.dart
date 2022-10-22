@@ -43,13 +43,11 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // WCINKI WCINKI WCINKI WCINKI WCINKI WCINKI WCINKI WCINKI WCINKI
         wciecia(Alignment.bottomRight, "images/login/login_bottomRight.png"),
         wciecia(Alignment.bottomLeft, "images/login/login_bottomLeft.png"),
         wciecia(Alignment.topRight, "images/login/login_topRight.png"),
         wciecia(Alignment.topLeft, "images/login/login_topLeft.png"),
 
-        // LOGOWANIE LOGOWANIE LOGOWANIE LOGOWANIE LOGOWANIE LOGOWANIE LOGOWANIE
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -14,10 +14,11 @@ class UserSettingsPage extends StatefulWidget {
 class _UserSettingsPageState extends State<UserSettingsPage> {
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
+    var user = FirebaseAuth.instance.currentUser;
 
     final _uLoggedWithGoogle =
-        Provider.of<GoogleSignInProvider>(context).isLoggedWithGoogle;
+        Provider.of<GoogleSignInProvider>(context, listen: false)
+            .isLoggedWithGoogle;
 
     return Scaffold(
       body: ListView(
@@ -41,7 +42,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                       child: _uLoggedWithGoogle()
                           ? CircleAvatar(
                               radius: 70,
-                              backgroundImage: NetworkImage(user.photoURL!),
+                              backgroundImage: NetworkImage(user!.photoURL!),
                               child: imgShadow(),
                             )
                           : CircleAvatar(
@@ -59,7 +60,9 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                         alignment: Alignment.center,
                         children: [
                           Text(
-                              _uLoggedWithGoogle() ? user.displayName! : "user",
+                              _uLoggedWithGoogle()
+                                  ? user!.displayName!
+                                  : "user",
                               maxLines: 2,
                               style: GoogleFonts.overpass(
                                 fontSize: 30,
@@ -72,7 +75,10 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                       Stack(
                         alignment: Alignment.center,
                         children: [
-                          Text(user.email!,
+                          Text(
+                              _uLoggedWithGoogle()
+                                  ? user!.email!
+                                  : "email@exa.com",
                               maxLines: 2,
                               textAlign: TextAlign.center,
                               style: GoogleFonts.overpass(

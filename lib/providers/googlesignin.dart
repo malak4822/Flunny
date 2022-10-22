@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
-// LOGOWANIE PRZEZ EMAIL I HASŁO LOGOWANIE PRZEZ EMAIL I HASŁO
-
   bool isLoggedWithGoogle() {
     var provUser = FirebaseAuth.instance.currentUser;
     if (provUser?.providerData[0].providerId == "google.com") {
@@ -15,19 +13,13 @@ class GoogleSignInProvider extends ChangeNotifier {
   }
 
   Future logout() async {
-    var provUser = FirebaseAuth.instance.currentUser;
-    if (provUser!.providerData[0].providerId == "google.com") {
-      await googleSignIn.disconnect();
-    }
+    await googleSignIn.disconnect();
     FirebaseAuth.instance.signOut();
-    isLoggedWithGoogle() == false;
 
     notifyListeners();
   }
 
   TextEditingController nameCont = TextEditingController();
-
-// LOGOWANIE PRZEZ EMAIL I HASŁO LOGOWANIE PRZEZ EMAIL I HASŁO
 
   final googleSignIn = GoogleSignIn();
 

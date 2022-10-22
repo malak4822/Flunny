@@ -39,8 +39,10 @@ class _UserPageState extends State<UserPage> {
 
             buttonClicked = !buttonClicked;
 // popycha go ale rdzeń tego odpychania dalej zostaje w MaterialApp
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const UserSettingsPage()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const UserSettingsPage()));
           },
           child: const Icon(
             Icons.settings,
@@ -78,7 +80,7 @@ class _UserPageState extends State<UserPage> {
                         style: GoogleFonts.overpass(
                             fontSize: 35, fontWeight: FontWeight.w900),
                       ),
-                      Text(user.email!,
+                      Text(_uLoggedWithGoogle() ? user.email! : "email@exa.com",
                           maxLines: 4,
                           style: GoogleFonts.overpass(
                               fontSize: 17, fontWeight: FontWeight.w200)),
