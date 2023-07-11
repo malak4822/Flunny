@@ -88,7 +88,7 @@ class Game extends StatelessWidget {
               children: [
                 ElevatedButton(
                     onPressed: () {
-                      _stopWatchTimer.onExecute.add(StopWatchExecute.start);
+                      _stopWatchTimer.onStartTimer();
                     },
                     style: ElevatedButton.styleFrom(
                         side: BorderSide(width: 1, color: greenie),
@@ -102,8 +102,8 @@ class Game extends StatelessWidget {
                 //
                 ElevatedButton(
                     onPressed: () {
-                      _stopWatchTimer.onExecute.add(StopWatchExecute.stop);
-                      _stopWatchTimer.onExecute.add(StopWatchExecute.lap);
+                      _stopWatchTimer.onStopTimer();
+                      _stopWatchTimer.onAddLap();
                       Provider.of<ZmienneClass>(context, listen: false)
                           .dodajczas1(_currenttime1);
                     },
