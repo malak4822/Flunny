@@ -5,7 +5,6 @@ Flunny is Flutter application which helps people to play in popular in real life
 
 ## Used To Do App
 - Google Sign In Method
-- HTTP Requests
 - Stop Watch Timer
 
 ## Screenshots
