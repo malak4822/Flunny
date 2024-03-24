@@ -1,16 +1,20 @@
-# fluny
+# Flunny
 
-A new Flutter project.
+## App Goal
+Flunny is Flutter application which helps people to play in popular in real life game caled "Flanki", it counts time and points of players. 
 
-## Getting Started
+## Used To Do App
+- Google Sign In Method
+- HTTP Requests
+- Cloud Firestore
+- Stop Watch Timer
 
-This project is a starting point for a Flutter application.
+## Screenshots
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Bugs & Tips
+If you encounter any bugs or unnecessary lines of code, please email me at: kmalak4822@gmail.com
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+
