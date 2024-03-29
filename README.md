@@ -1,4 +1,4 @@
-# <img src='https://github.com/malak4822/Flunny/assets/71153710/ada3686e-1037-4816-8cc0-0406697c1079' width='36'> Flunny
+# <img src='https://github.com/malak4822/Flunny/assets/71153710/ada3686e-1037-4816-8cc0-0406697c1079' width='46'> Flunny
 
 ## Description
 Flunny is Flutter application which helps people to play in popular in real life game caled "Flanki", it counts time and points of players. 
