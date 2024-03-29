@@ -1,6 +1,6 @@
 # Flunny
 
-## App Goal
+## Description
 Flunny is Flutter application which helps people to play in popular in real life game caled "Flanki", it counts time and points of players. 
 
 ## Used To Do App
